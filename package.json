@@ -1,5 +1,5 @@
 {
-  "name": "DiscordFramework",
+  "name": "ffg-discord-framework",
   "version": "1.0.0",
   "description": "A Discord Bot Framework by Drake Taylor",
   "main": "build/index.js",
