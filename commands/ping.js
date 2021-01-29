@@ -2,8 +2,8 @@ const Descriptor = {
   description: "A simple test command."
 };
 
-function execute(msg) {
-  return msg.reply("Pong!");
+async function execute(msg) {
+  return await msg.reply("Pong!");
 }
 
 module.exports = {

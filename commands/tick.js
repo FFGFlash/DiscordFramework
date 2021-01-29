@@ -5,11 +5,11 @@ const Descriptor = {
 function execute(msg) {
   let number = 0;
   try {
-    number = this.db.getData(`/users/${msg.author.id}/ticks`);
+    number = this.databases.get("json").connection.getData(`/users/${msg.author.id}/ticks`);
   } catch(err) {
   }
-  this.db.push(`/users/${msg.author.id}/ticks`, ++number);
-  msg.reply(`You now have ${number} of ticks.`);
+  this.databases.get("json").connection.push(`/users/${msg.author.id}/ticks`, ++number);
+  msg.reply(`You now have ${number} ticks.`);
 }
 
 module.exports = {
