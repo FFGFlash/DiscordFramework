@@ -2,11 +2,12 @@
   "name": "ffg-discord-framework",
   "version": "1.0.0",
   "description": "A Discord Bot Framework by Drake Taylor",
-  "main": "build/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "node dist/test",
-    "start": "node .",
-    "build": "npx tsc"
+    "test": "npm run build && node dist/test",
+    "build": "npx tsc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
