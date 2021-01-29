@@ -8,10 +8,15 @@ import * as Util from "util";
 import * as Mysql from "mysql";
 import * as JsonDBConfig from "node-json-db/dist/lib/JsonDBConfig";
 
-import * as Chokidar from "chokidar";
-import { PastebinAPI } from "pastebin-ts/dist/api";
+import * as Chokidar_ from "chokidar";
+import PastebinAPI_ from "pastebin-ts/dist/api";
 import { IPastebinOptions } from "pastebin-ts/dist/interfaces";
 import Fetch from "node-fetch";
+
+let Chokidar: any = undefined;
+let PastebinAPI: any = undefined;
+try { Chokidar = require("chokidar"); } catch(err) {}
+try { PastebinAPI = require("pastebin-ts/dist/api").PastebinAPI; } catch(err) {}
 
 export * from "./interfaces";
 export * from "./classes";
@@ -42,7 +47,7 @@ export class Bot extends Discord.Client {
   prefix: string;
   deleteTimer: number;
   owners?: Discord.Snowflake[];
-  pastebin?: PastebinAPI;
+  pastebin?: PastebinAPI_.PastebinAPI;
 
   constructor(options?: Types.ClientOptions) {
     super(options);
@@ -254,7 +259,7 @@ export class Bot extends Discord.Client {
     } else if (component instanceof Classes.Database) {
       this.databases.set(component.name, component);
     } else if (component instanceof PastebinAPI) {
-      this.pastebin = component;
+      this.pastebin = (component as unknown as PastebinAPI_.PastebinAPI);
     }
     return component;
   }
@@ -284,7 +289,7 @@ export class Bot extends Discord.Client {
           this.addCommand(name, data.descriptor).run = data.execute;
         }
       } else {
-        let watch = Chokidar.watch(this.cmdDir, {
+        let watch: Chokidar_.FSWatcher = Chokidar.watch(this.cmdDir, {
           ignored: /^\./,
           persistent: true,
           awaitWriteFinish: true

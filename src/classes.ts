@@ -2,10 +2,15 @@ import * as Types from "./interfaces";
 import * as Discord from "discord.js";
 import { Bot } from "./index";
 
+import * as Mysql_ from "mysql";
 import * as JsonDBConfig from "node-json-db/dist/lib/JsonDBConfig";
-import * as Mysql from "mysql";
-import * as Sqlite from "sqlite3";
-import * as JsonDB from "node-json-db";
+
+let Mysql: any = undefined;
+let Sqlite: any = undefined;
+let JsonDB: any = undefined;
+try { Mysql = require("mysql"); } catch(err) {}
+try { Sqlite = require("sqlite3"); } catch(err) {}
+try { JsonDB = require("node-json-db"); } catch(err) {}
 
 export class Database {
   name: string;
@@ -26,12 +31,12 @@ export class Database {
     return new Database(name, new JsonDB.JsonDB(filename, saveOnPush, humanReadable, separator));
   }
 
-  static MysqlDB(name: string, options: string | Mysql.ConnectionConfig) {
+  static MysqlDB(name: string, options: string | Mysql_.ConnectionConfig) {
     if (!Mysql) throw new Error("Missing 'mysql' optional dependency.");
     return new Database(name, Mysql.createConnection(options));
   }
 
-  static MysqlPoolDB(name: string, options: string | Mysql.PoolConfig) {
+  static MysqlPoolDB(name: string, options: string | Mysql_.PoolConfig) {
     if (!Mysql) throw new Error("Missing 'mysql' optional dependency.");
     return new Database(name, Mysql.createPool(options));
   }
