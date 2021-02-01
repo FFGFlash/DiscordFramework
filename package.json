@@ -42,11 +42,28 @@
     "discord.js": "^12.5.1",
     "node-fetch": "^2.6.1"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "chokidar": "^3.5.1",
     "mysql": "^2.18.1",
     "node-json-db": "^1.1.0",
     "pastebin-ts": "^1.2.0",
     "sqlite3": "^5.0.1"
+  },
+  "peerDependenciesMeta": {
+    "chokidar": {
+      "optional": true
+    },
+    "mysql": {
+      "optional": true
+    },
+    "node-json-db": {
+      "optional": true
+    },
+    "pastebin-ts": {
+      "optional": true
+    },
+    "sqlite3": {
+      "optional": true
+    }
   }
 }
