@@ -1,6 +1,6 @@
 {
   "name": "ffg-discord-framework",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A Discord Bot Framework by Drake Taylor",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
