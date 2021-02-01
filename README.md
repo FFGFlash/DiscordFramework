@@ -8,6 +8,7 @@
 - [Example](#examples)
     - [Bot](#bot)
     - [Command File](#command-file)
+
 ## Installing
 ```bat
 > npm install --save ffg-discord-framework

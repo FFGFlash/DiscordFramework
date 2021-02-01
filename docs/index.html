@@ -79,72 +79,76 @@
 					</li>
 					<li><a href="#examples">Example</a><ul>
 							<li><a href="#bot">Bot</a></li>
-							<li><a href="#command-file">Command File</a>
-								<a href="#installing" id="installing" style="color: inherit; text-decoration: none;">
-									<h2>Installing</h2>
-								</a>
-								<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save ffg-discord-framework</span>
+							<li><a href="#command-file">Command File</a></li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#installing" id="installing" style="color: inherit; text-decoration: none;">
+					<h2>Installing</h2>
+				</a>
+				<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save ffg-discord-framework</span>
 </code></pre>
-								<a href="#optional-dependencies" id="optional-dependencies" style="color: inherit; text-decoration: none;">
-									<h4>Optional Dependencies</h4>
-								</a>
-								<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save chokidar</span>
+				<a href="#optional-dependencies" id="optional-dependencies" style="color: inherit; text-decoration: none;">
+					<h4>Optional Dependencies</h4>
+				</a>
+				<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save chokidar</span>
 <span style="color: #000000">&gt; npm install --save mysql</span>
 <span style="color: #000000">&gt; npm install --save sqlite3</span>
 <span style="color: #000000">&gt; npm install --save node-json-db</span>
 <span style="color: #000000">&gt; npm install --save pastebin-ts</span>
 </code></pre>
-								<a href="#chokidar" id="chokidar" style="color: inherit; text-decoration: none;">
-									<h5>Chokidar</h5>
-								</a>
-								Chokidar enables the framework to watch the provided command directory, meaning commands can be loaded, reloaded and unloaded without restarting the bot.
-								<a href="#mysql" id="mysql" style="color: inherit; text-decoration: none;">
-									<h5>MYSQL</h5>
-								</a>
-								MYSQL enables the use of MYSQL Databases.<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;connection-uri&quot;</span><span style="color: #000000">);</span>
+				<a href="#chokidar" id="chokidar" style="color: inherit; text-decoration: none;">
+					<h5>Chokidar</h5>
+				</a>
+				<p>Chokidar enables the framework to watch the provided command directory, meaning commands can be loaded, reloaded and unloaded without restarting the bot.</p>
+				<a href="#mysql" id="mysql" style="color: inherit; text-decoration: none;">
+					<h5>MYSQL</h5>
+				</a>
+				<p>MYSQL enables the use of MYSQL Databases.</p>
+				<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;connection-uri&quot;</span><span style="color: #000000">);</span>
 
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">    </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;127.0.0.1&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">port:</span><span style="color: #000000"> </span><span style="color: #098658">3306</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">user:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;username&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;password&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">database:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-name&quot;</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlPoolDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;connection-uri&quot;</span><span style="color: #000000">);</span>
+
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlPoolDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">    </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;127.0.0.1&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">port:</span><span style="color: #000000"> </span><span style="color: #098658">3306</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">user:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;username&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;password&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">database:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">connectionLimit:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">queueLimit:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">waitForConnections:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">acquireTimeout:</span><span style="color: #000000"> </span><span style="color: #098658">10</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">conn</span><span style="color: #000000"> = </span><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">getDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #795E26">connect</span><span style="color: #000000">();</span>
+<span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example-query&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #795E26">end</span><span style="color: #000000">();</span>
 </code></pre>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<p>bot.addMysqlDB(&quot;database-name&quot;, {
-					host: &quot;127.0.0.1&quot;,
-					port: 3306,
-					user: &quot;username&quot;,
-					password: &quot;password&quot;,
-					database: &quot;database-name&quot;
-				});</p>
-				<p>bot.addMysqlPoolDB(&quot;database-name&quot;, &quot;connection-uri&quot;);</p>
-				<p>bot.addMysqlPoolDB(&quot;database-name&quot;, {
-					host: &quot;127.0.0.1&quot;,
-					port: 3306,
-					user: &quot;username&quot;,
-					password: &quot;password&quot;,
-					database: &quot;database-name&quot;,
-					connectionLimit: 10,
-					queueLimit: 0,
-					waitForConnections: true,
-					acquireTimeout: 10
-				});</p>
-				<p>let conn = bot.getDB(&quot;database-name&quot;);
-					conn.connect();
-					conn.query(&quot;example-query&quot;);
-				conn.end();</p>
-				<pre><code><span style="color: #000000">##### </span><span style="color: #001080">SQLite3</span>
-<span style="color: #001080">SQLite3</span><span style="color: #000000"> </span><span style="color: #001080">enables</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">use</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">SQLite</span><span style="color: #000000"> </span><span style="color: #001080">Databases</span><span style="color: #000000">.</span>
-<span style="color: #A31515">```js</span>
-<span style="color: #A31515">bot.addSqliteDB(&quot;database-name&quot;, &quot;database-filename&quot;);</span>
+				<a href="#sqlite3" id="sqlite3" style="color: inherit; text-decoration: none;">
+					<h5>SQLite3</h5>
+				</a>
+				<p>SQLite3 enables the use of SQLite Databases.</p>
+				<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSqliteDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;database-filename&quot;</span><span style="color: #000000">);</span>
 
-<span style="color: #A31515">bot.addSqliteDB(&quot;database-name&quot;, {</span>
-<span style="color: #A31515">    filename: &quot;database-filename&quot;,</span>
-<span style="color: #A31515">    mode: Sqlite3.OPEN_READWRITE | Sqlite3.OPEN_CREATE,</span>
-<span style="color: #A31515">    callback: error =&gt; {</span>
-<span style="color: #A31515">        if (error) throw error;</span>
-<span style="color: #A31515">    }</span>
-<span style="color: #A31515">});</span>
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSqliteDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">    </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-filename&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">Sqlite3</span><span style="color: #000000">.</span><span style="color: #0070C1">OPEN_READWRITE</span><span style="color: #000000"> | </span><span style="color: #001080">Sqlite3</span><span style="color: #000000">.</span><span style="color: #0070C1">OPEN_CREATE</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #795E26">callback</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">error</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #AF00DB">throw</span><span style="color: #000000"> </span><span style="color: #001080">error</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">});</span>
 
-<span style="color: #A31515">bot.getDB(&quot;database-name&quot;).run(&quot;example-query&quot;);</span>
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">getDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">run</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example-query&quot;</span><span style="color: #000000">);</span>
 </code></pre>
 				<a href="#jsondb" id="jsondb" style="color: inherit; text-decoration: none;">
 					<h5>JSONDB</h5>
