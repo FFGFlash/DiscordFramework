@@ -2,6 +2,7 @@
 ### Powered by [Discord.JS](https://discord.js.org/)
 #### Authors
 - FFGFlash
+
 #### Table of Contents
 - [Installing](#installing)
     - [Optional Dependencies](#optional-dependencies)
