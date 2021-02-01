@@ -1,12 +1,12 @@
 const Descriptor = {
-  description: "A simple test command."
+	description: "This is an example command."
 };
 
 async function execute(msg) {
-  return await msg.reply("Pong!");
+	return msg.reply("Pong!");
 }
 
 module.exports = {
-  descriptor: Descriptor,
-  execute: execute
-}
+	descriptor: Descriptor,
+	execute: execute
+};

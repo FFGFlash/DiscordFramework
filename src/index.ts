@@ -35,10 +35,12 @@ export class Bot extends Discord.Client {
     cmdDir: "./commands",
     loadCmdDir: true,
     prefix: "!",
-    deleteTimer: 5
+    deleteTimer: 5,
+    disabledCommands: []
   };
 
   private fetchPrefix: (guild?: Discord.Guild | null) => string;
+  private fetchDisabledCommands: (guild?: Discord.Guild | null) => string[];
 
   commands: Discord.Collection<string, Classes.Command>;
   databases: Discord.Collection<string, Classes.Database>;
@@ -48,6 +50,7 @@ export class Bot extends Discord.Client {
   deleteTimer: number;
   owners?: Discord.Snowflake[];
   pastebin?: PastebinAPI_.PastebinAPI;
+  disabledCommands: string[];
 
   constructor(options?: Types.ClientOptions) {
     super(options);
@@ -58,54 +61,94 @@ export class Bot extends Discord.Client {
     this.prefix = options && options.prefix ? options.prefix : Bot.DefaultOptions.prefix as string;
     this.deleteTimer = options && options.deleteTimer ? options.deleteTimer : Bot.DefaultOptions.deleteTimer as number;
     this.owners = options && options.owners ? options.owners : Bot.DefaultOptions.owners
+    this.disabledCommands = options && options.disabledCommands ? options.disabledCommands : Bot.DefaultOptions.disabledCommands as string[];
     this.fetchPrefix = () => this.prefix;
+    this.fetchDisabledCommands = () => this.disabledCommands;
 
-    this.addCommand("loadCommand", {
+    this.addCommand("command", {
       botOwnerOnly: true,
-      description: "Loads commands from javascript files.",
+      description: "Handles command manipulation.",
       arguments: [
+        {name: "load | unload | disable | enable | reload", options: {optional: false, description: "The action to perform."}},
         {name: "name", options: {optional: true, description: "The name of the command."}},
         {name: "pastebin", options: {optional: true, description: "Pastebin id."}}
       ]
-    }).run = function(this: Bot, msg, name, pastebin) {
-      if (name) {
-        name += ".js";
-      }
-
-      if (pastebin) {
-        if (!PastebinAPI) return msg.reply("Sorry I'm missing the 'PastebinAPI' module.");
-        if (!this.pastebin) return msg.reply("Sorry I haven't been given a 'PastebinAPI' dev key.");
-
-        this.pastebin.getPaste(pastebin).then(data => {
-          FileSystem.writeFile(name, data, "utf8", (err) => {
-            if (err) throw err;
-            msg.reply(`Uploaded Command.`);
-          });
-        });
-
-        return;
-      }
-
-      let file = msg.attachments.first();
-
-      if (!file) return msg.reply("No File Provided.");
-
-      if (!file.name) return msg.reply("Missing File Name.");
-
-      if (!name) name = file.name;
-
-      let ext = name.replace(/(.*\/)?(\..*?|.*?)(\.[^.]*?)?(#.*$|\?.*$|$)/gim, "$3");
-
-      if ([".js"].indexOf(ext) == -1) return msg.reply("Unsupported file extension.");
-
-      Fetch(file.url).then(res => res.text()).then(data => {
-        if (ext == ".js") {
-          FileSystem.writeFile(resolve(this.cmdDir, name), data, "utf8", (err) => {
-            if (err) throw err;
-            msg.reply(`Uploaded Command.`);
-          });
+    }).run = function(this: Bot, msg, action, name, pastebin) {
+      action = action.toLowerCase();
+      if (name) name = name.toLowerCase();
+      if (action == "load") {
+        let path = resolve(this.cmdDir, `${name}.js`);
+        let done = () => {
+          if (!Chokidar) {
+            console.log(`Loading Command "${name}" from "${path}"`);
+            let data = superRequire(path);
+            this.addCommand(name, data.descriptor).run = data.execute;
+          }
+          msg.reply(`Command '${name}' loaded.`);
         }
-      });
+        if (pastebin) {
+          if (!PastebinAPI) return msg.reply("Sorry I'm missing the 'PastebinAPI' module.");
+          if (!this.pastebin) return msg.reply("Sorry I haven't been given a 'PastebinAPI' dev key.");
+          this.pastebin.getPaste(pastebin).then(data => {
+            FileSystem.writeFile(path, data, "utf8", (err) => {
+              if (err) throw err;
+              done();
+            });
+          });
+          return;
+        }
+        let file = msg.attachments.first();
+        if (!file) return msg.reply("No File Provided.");
+        if (!file.name) return msg.reply("Missing File Name.");
+        if (!name) name = file.name.toLowerCase();
+        path = resolve(this.cmdDir, `${name}.js`);
+        let ext = name.replace(/(.*\/)?(\..*?|.*?)(\.[^.]*?)?(#.*$|\?.*$|$)/gim, "$3");
+        if ([".js"].indexOf(ext) == -1) return msg.reply("Unsupported file extension.");
+        Fetch(file.url).then(res => res.text()).then(data => {
+          if (ext == ".js") {
+            FileSystem.writeFile(path, data, "utf8", (err) => {
+              if (err) throw err;
+              done();
+            });
+          }
+        });
+      } else if (action == "unload") {
+        if (!name) return msg.reply("This action requires a name.");
+        let command = this.getCommand(name.toLowerCase());
+        if (!command) return msg.reply("Couldn't find the command provided.");
+        let path = resolve(this.cmdDir, `${command.name}.js`);
+        if (FileSystem.existsSync(path)) {
+          FileSystem.unlink(path, err => {
+            if (err) throw err;
+            if (!Chokidar) {
+              this.removeCommand(name);
+            }
+          });
+        } else {
+          this.removeCommand(name);
+        }
+        msg.reply(`Command '${name}' unloaded.`);
+      } else if (action == "disable") {
+        if (!name) return msg.reply("This action requires a name.");
+        if (this.disabledCommands.indexOf(name) != -1) return msg.reply("The command provided is already disabled.");
+        this.disabledCommands.push(name);
+        msg.reply(`Command '${name}' disabled.`);
+      } else if (action == "enable") {
+        if (!name) return msg.reply("This action requires a name.");
+        let index = this.disabledCommands.indexOf(name);
+        if (index == -1) return msg.reply("The command provided is already enabled.");
+        delete this.disabledCommands[index];
+        msg.reply(`Command '${name}' enabled.`);
+      } else if (action == "reload") {
+        if (!name) return msg.reply("This action requires a name.");
+        let command = this.getCommand(name);
+        if (!command) return msg.reply("Couldn't find the command provided.");
+        let path = resolve(this.cmdDir, `${name}.js`);
+        console.log(`Reloading Command "${name}" from "${path}"`);
+        let data = superRequire(path);
+        this.addCommand(name, data.descriptor).run = data.execute;
+        msg.reply(`Command '${name}' reloaded.`)
+      }
     };
 
     this.addCommand("eval", {
@@ -175,7 +218,8 @@ export class Bot extends Discord.Client {
       let args = content.split(" ");
       let cmd = (args.shift() as string).toLowerCase();
 
-      let prefix = this.getPrefix(msg.guild)
+      let prefix = this.getPrefix(msg.guild);
+      let disabledCommands = this.getDisabledCommands(msg.guild);
 
       if (!cmd.startsWith(prefix)) return;
 
@@ -183,6 +227,7 @@ export class Bot extends Discord.Client {
         let command = this.commands.get(cmd.substring(prefix.length));
 
         if (!command) return msg.reply("No Command Found.");
+        if (disabledCommands.indexOf(command.name) != -1) return msg.reply("The provided command has been disabled.");
 
         return await command.run(msg, ...args);
       })();
@@ -203,6 +248,14 @@ export class Bot extends Discord.Client {
     return this.fetchPrefix;
   }
 
+  set getDisabledCommands(getDisabledCommands: (guild?: Discord.Guild | null) => string[]) {
+    this.fetchDisabledCommands = getDisabledCommands;
+  }
+
+  get getDisabledCommands() {
+    return this.fetchDisabledCommands;
+  }
+
   addPastebinAPI(options?: string | IPastebinOptions) {
     if (!PastebinAPI) throw new Error("Missing 'pastebin-ts' optional dependency.");
     return this.add(new PastebinAPI(options));
@@ -210,6 +263,10 @@ export class Bot extends Discord.Client {
 
   addCommand(name: string, options?: Types.CommandOptions) {
     return this.add(new Classes.Command(this, name, options));
+  }
+
+  getCommand(name: string) {
+    return this.commands.get(name);
   }
 
   removeCommand(name: string | Classes.Command) {

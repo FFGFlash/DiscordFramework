@@ -13,7 +13,7 @@ const bot = new Bot({
 });
 
 bot.addJsonDB("json", {filename: "jsondb", saveOnPush: true, humanReadable: false, separator: "/"});
-bot.addSqliteDB("sqlite", "sqlitedb");
+// bot.addSqliteDB("sqlite", "sqlitedb");
 
 bot.addPastebinAPI({
   api_dev_key: process.env.PASTEBIN_DEV_KEY

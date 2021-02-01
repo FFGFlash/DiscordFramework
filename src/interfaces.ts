@@ -34,5 +34,6 @@ export interface ClientOptions extends Discord.ClientOptions {
   loadCmdDir?: boolean;
   prefix?: string;
   deleteTimer?: number;
-  owners?: Discord.Snowflake[]
+  owners?: Discord.Snowflake[];
+  disabledCommands?: string[];
 }
