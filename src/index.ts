@@ -310,6 +310,12 @@ export class Bot extends Discord.Client {
     return this.add(Classes.Database.SqliteDB(name, options));
   }
 
+  getDB(name: string) {
+    let database = this.databases.get(name);
+    if (!database) throw new Error("Failed to find requested database.");
+    return database.connection;
+  }
+
   add<T>(component: T): T {
     if (component instanceof Classes.Command) {
       this.commands.set(component.name.toLowerCase(), component);
