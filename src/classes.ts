@@ -8,9 +8,11 @@ import * as JsonDBConfig from "node-json-db/dist/lib/JsonDBConfig";
 let Mysql: any = undefined;
 let Sqlite: any = undefined;
 let JsonDB: any = undefined;
+let Sheet: any = undefined;
 try { Mysql = require("mysql"); } catch(err) {}
 try { Sqlite = require("sqlite3"); } catch(err) {}
 try { JsonDB = require("node-json-db"); } catch(err) {}
+try { Sheet = require("google-spreadsheet"); } catch(err) {}
 
 export class Database {
   name: string;
@@ -29,6 +31,19 @@ export class Database {
     let humanReadable = config ? (options as JsonDBConfig.JsonDBConfig).humanReadable : undefined;
     let separator = config ? (options as JsonDBConfig.JsonDBConfig).separator : undefined;
     return new Database(name, new JsonDB.JsonDB(filename, saveOnPush, humanReadable, separator));
+  }
+
+  static async SheetDB(name: string, options: Types.SheetDBConfig) {
+    if (!Sheet) throw new Error("Missing 'google-spreadsheet' optional dependency.");
+    let doc = new Sheet.GoogleSpreadsheet(options.id);
+    if (options.creds) {
+      await doc.useServiceAccountAuth(options.creds);
+    } else if (options.key) {
+      await doc.useApiKey(options.key);
+    } else throw new Error("Either provide an API Key or Credentials for SheetDB.");
+    if (options.populate)
+      await doc.loadInfo();
+    return new Database(name, doc);
   }
 
   static MysqlDB(name: string, options: string | Mysql_.ConnectionConfig) {

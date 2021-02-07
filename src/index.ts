@@ -310,6 +310,10 @@ export class Bot extends Discord.Client {
     return this.add(Classes.Database.SqliteDB(name, options));
   }
 
+  async addSheetDB(name: string, options: Types.SheetDBConfig) {
+    return this.add(await Classes.Database.SheetDB(name, options));
+  }
+
   getDB(name: string) {
     let database = this.databases.get(name);
     if (!database) throw new Error("Failed to find requested database.");

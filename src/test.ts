@@ -12,7 +12,7 @@ const bot = new Bot({
   owners: BotOwners
 });
 
-bot.addJsonDB("json", {filename: "jsondb", saveOnPush: true, humanReadable: false, separator: "/"});
+// bot.addJsonDB("json", {filename: "jsondb", saveOnPush: true, humanReadable: false, separator: "/"});
 // bot.addSqliteDB("sqlite", "sqlitedb");
 
 bot.addPastebinAPI({

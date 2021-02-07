@@ -4,11 +4,19 @@ import * as Classes from "./classes";
 import * as Mysql from "mysql";
 import * as JsonDB from "node-json-db";
 import * as Sqlite from "sqlite3";
+import * as Sheet from "google-spreadsheet";
 
 export type channel = 'any' | 'guild' | 'dm';
 export type component = Classes.Argument;
-export type database = Mysql.Connection | Mysql.Pool | JsonDB.JsonDB | Sqlite.Database;
+export type database = Mysql.Connection | Mysql.Pool | JsonDB.JsonDB | Sqlite.Database | Sheet.GoogleSpreadsheet;
 export type commandResponse = Promise<Discord.Message | undefined> | undefined | void;
+
+export interface SheetDBConfig {
+  id: string;
+  creds?: {private_key: string, client_email: string};
+  key?: string;
+  populate?: boolean;
+}
 
 export interface CommandOptions {
   description?: string;
