@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CommandOptions | ffg-discord-framework</title>
+	<title>SheetDBConfig | ffg-discord-framework</title>
 	<meta name="description" content="Documentation for ffg-discord-framework">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">ffg-discord-framework</a>
 				</li>
 				<li>
-					<a href="commandoptions.html">CommandOptions</a>
+					<a href="sheetdbconfig.html">SheetDBConfig</a>
 				</li>
 			</ul>
-			<h1>Interface CommandOptions</h1>
+			<h1>Interface SheetDBConfig</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CommandOptions</span>
+						<span class="target">SheetDBConfig</span>
 					</li>
 				</ul>
 			</section>
@@ -80,11 +80,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="commandoptions.html#arguments" class="tsd-kind-icon">arguments</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="commandoptions.html#botowneronly" class="tsd-kind-icon">bot<wbr>Owner<wbr>Only</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="commandoptions.html#channels" class="tsd-kind-icon">channels</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="commandoptions.html#description" class="tsd-kind-icon">description</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="commandoptions.html#permissions" class="tsd-kind-icon">permissions</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sheetdbconfig.html#creds" class="tsd-kind-icon">creds</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sheetdbconfig.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sheetdbconfig.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sheetdbconfig.html#populate" class="tsd-kind-icon">populate</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,52 +92,42 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="arguments" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> arguments</h3>
-					<div class="tsd-signature tsd-kind-icon">arguments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../classes/argument.html" class="tsd-signature-type" data-tsd-kind="Class">Argument</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="argumentoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ArgumentOptions</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></div>
+					<a name="creds" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> creds</h3>
+					<div class="tsd-signature tsd-kind-icon">creds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>client_email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>private_key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L24">src/interfaces.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L16">src/interfaces.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="botowneronly" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bot<wbr>Owner<wbr>Only</h3>
-					<div class="tsd-signature tsd-kind-icon">bot<wbr>Owner<wbr>Only<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L26">src/interfaces.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L15">src/interfaces.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="channels" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> channels</h3>
-					<div class="tsd-signature tsd-kind-icon">channels<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;any&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guild&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;dm&quot;</span></div>
+					<a name="key" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L23">src/interfaces.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L17">src/interfaces.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="description" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> description</h3>
-					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="populate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> populate</h3>
+					<div class="tsd-signature tsd-kind-icon">populate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L22">src/interfaces.ts:22</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="permissions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> permissions</h3>
-					<div class="tsd-signature tsd-kind-icon">permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Permissions</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L25">src/interfaces.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/36c8a4b/src/interfaces.ts#L18">src/interfaces.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,33 +161,30 @@
 					<li class=" tsd-kind-interface">
 						<a href="clientoptions.html" class="tsd-kind-icon">Client<wbr>Options</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="commandoptions.html" class="tsd-kind-icon">Command<wbr>Options</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="commandoptions.html" class="tsd-kind-icon">Command<wbr>Options</a>
+						<a href="sheetdbconfig.html" class="tsd-kind-icon">SheetDBConfig</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="commandoptions.html#arguments" class="tsd-kind-icon">arguments</a>
+								<a href="sheetdbconfig.html#creds" class="tsd-kind-icon">creds</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="commandoptions.html#botowneronly" class="tsd-kind-icon">bot<wbr>Owner<wbr>Only</a>
+								<a href="sheetdbconfig.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="commandoptions.html#channels" class="tsd-kind-icon">channels</a>
+								<a href="sheetdbconfig.html#key" class="tsd-kind-icon">key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="commandoptions.html#description" class="tsd-kind-icon">description</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="commandoptions.html#permissions" class="tsd-kind-icon">permissions</a>
+								<a href="sheetdbconfig.html#populate" class="tsd-kind-icon">populate</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="sheetdbconfig.html" class="tsd-kind-icon">SheetDBConfig</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="sqliteconfig.html" class="tsd-kind-icon">Sqlite<wbr>Config</a>
 					</li>
