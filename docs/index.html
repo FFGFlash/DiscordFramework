@@ -97,6 +97,7 @@
 <span style="color: #000000">&gt; npm install --save sqlite3</span>
 <span style="color: #000000">&gt; npm install --save node-json-db</span>
 <span style="color: #000000">&gt; npm install --save pastebin-ts</span>
+<span style="color: #000000">&gt; npm install --save google-spreadsheet</span>
 </code></pre>
 				<a href="#chokidar" id="chokidar" style="color: inherit; text-decoration: none;">
 					<h5>Chokidar</h5>
@@ -181,6 +182,27 @@
 <span style="color: #000000">   </span><span style="color: #001080">api_user_password:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;password&quot;</span>
 <span style="color: #000000">});</span>
 </code></pre>
+				<a href="#google-spreadsheet" id="google-spreadsheet" style="color: inherit; text-decoration: none;">
+					<h5>Google Spreadsheet</h5>
+				</a>
+				<p>Google Spreadsheet enables the ability to read/write to google spreadsheets.</p>
+				<pre><code class="language-js"><span style="color: #008000">// Read only.</span>
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSheetDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;spreadsheet-id&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;google-api-key&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">populate:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// Read and Write.</span>
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSheetDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;spreadsheet-id&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">creds:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">private_key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;private-key&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">client_email:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;client-email&quot;</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">populate:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
 					<h2>Examples</h2>
 				</a>
@@ -196,6 +218,7 @@
 <span style="color: #000000">    </span><span style="color: #001080">loadCmdDir:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Whether or not to load file commands</span>
 <span style="color: #000000">    </span><span style="color: #001080">deleteTimer:</span><span style="color: #000000"> </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #008000">// How long a response should stay in chat</span>
 <span style="color: #000000">    </span><span style="color: #001080">disableCommands:</span><span style="color: #000000"> [</span><span style="color: #A31515">&quot;eval&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;command&quot;</span><span style="color: #000000">] </span><span style="color: #008000">// List of command names to disable globaly</span>
+<span style="color: #000000">    </span><span style="color: #001080">embed</span><span style="color: #000000">: {} </span><span style="color: #008000">// Default embed options used when creating an embed with &#039;bot.createEmbed()&#039;</span>
 <span style="color: #000000">});</span>
 
 <span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addCommand</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example&quot;</span><span style="color: #000000">, {</span>
