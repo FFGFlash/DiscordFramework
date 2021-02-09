@@ -9,7 +9,10 @@ import { Bot } from "./index";
 const BotOwners = process.env.BOT_OWNERS ? process.env.BOT_OWNERS.split(",") : [];
 
 const bot = new Bot({
-  owners: BotOwners
+  owners: BotOwners,
+  embed: {
+    color: 1562655
+  }
 });
 
 // bot.addJsonDB("json", {filename: "jsondb", saveOnPush: true, humanReadable: false, separator: "/"});

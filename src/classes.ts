@@ -136,6 +136,14 @@ export class Command {
     this.execute = execute;
   }
 
+  toString(): string {
+    let retVal = [`${this.name}`];
+    for (let arg of this.arguments) {
+      retVal.push(arg.toString());
+    }
+    return retVal.join(" ");
+  }
+
   get run(): (msg: Discord.Message, ...args: any[]) => Promise<Types.commandResponse> | Types.commandResponse {
     return (msg: Discord.Message, ...args: any[]): Promise<Types.commandResponse> | Types.commandResponse => {
       let guild = msg.guild;
@@ -169,5 +177,9 @@ export class Argument {
     this.name = name.toLowerCase();
     this.description = options && options.description ? options.description : Argument.DefaultOptions.description as string;
     this.optional = options && options.optional ? options.optional : Argument.DefaultOptions.optional as boolean;
+  }
+
+  toString(): string {
+    return this.optional ? `[${this.name}]` : `<${this.name}>`;
   }
 }

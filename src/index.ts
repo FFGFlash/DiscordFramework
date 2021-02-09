@@ -51,6 +51,7 @@ export class Bot extends Discord.Client {
   owners?: Discord.Snowflake[];
   pastebin?: PastebinAPI_.PastebinAPI;
   disabledCommands: string[];
+  embed?: Discord.MessageEmbed | Discord.MessageEmbedOptions;
 
   constructor(options?: Types.ClientOptions) {
     super(options);
@@ -61,9 +62,46 @@ export class Bot extends Discord.Client {
     this.prefix = options && options.prefix ? options.prefix : Bot.DefaultOptions.prefix as string;
     this.deleteTimer = options && options.deleteTimer ? options.deleteTimer : Bot.DefaultOptions.deleteTimer as number;
     this.owners = options && options.owners ? options.owners : Bot.DefaultOptions.owners
+    this.embed = options && options.embed ? options.embed : Bot.DefaultOptions.embed;
     this.disabledCommands = options && options.disabledCommands ? options.disabledCommands : Bot.DefaultOptions.disabledCommands as string[];
     this.fetchPrefix = () => this.prefix;
     this.fetchDisabledCommands = () => this.disabledCommands;
+
+    this.addCommand("help", {
+      description: "Displays all commands.",
+      arguments: [
+        {name: "page | command", options: {optional: true, description: "Display a certain help page or get help for a specific command."}}
+      ]
+    }).run = function(this: Bot, msg, p = "1") {
+      if (!this.user) return;
+      let prefix = this.getPrefix(msg.guild);
+      let embed = this.createEmbed().setDescription("<> - required [] - optional").setTimestamp(new Date()).setAuthor(this.user.username, this.user.displayAvatarURL());
+      p = p.toLowerCase();
+      let commandHelp = isNaN(p);
+      if (commandHelp) {
+        let cmd = this.commands.get(p);
+        if (!cmd) return msg.reply(`Couldn't find the command provided. '${p}'`);
+        for (let arg of cmd.arguments) {
+          embed.addField(arg.toString(), arg.description, true);
+        }
+        msg.reply(embed.setTitle(`${prefix}${cmd.toString()}`).setDescription(cmd.description));
+        return;
+      }
+      p = parseInt(p);
+      let maxPage = Math.ceil(this.commands.size / 20);
+      if (p > maxPage) p = maxPage;
+      else if (p < 1) p = 1;
+      embed.setTitle(`**Help** (Page ${p}/${maxPage})`)
+      p -= 1;
+
+      let cmds = [...this.commands.values()].slice(p * 20, (p + 1) * 20);
+
+      for (let cmd of cmds) {
+        embed.addField(`${prefix}${cmd.toString()}`, cmd.description);
+      }
+
+      msg.reply(embed);
+    }
 
     this.addCommand("command", {
       botOwnerOnly: true,
@@ -254,6 +292,18 @@ export class Bot extends Discord.Client {
 
   get getDisabledCommands() {
     return this.fetchDisabledCommands;
+  }
+
+  createEmbed(options?: Discord.MessageEmbed | Discord.MessageEmbedOptions) {
+    let opt: Discord.MessageEmbed | Discord.MessageEmbedOptions = {};
+    if (this.embed && options) {
+      opt = {...this.embed, ...options} as Discord.MessageEmbedOptions;
+    } else if (this.embed) {
+      opt = this.embed;
+    } else if (options) {
+      opt = options;
+    }
+    return new Discord.MessageEmbed(opt);
   }
 
   addPastebinAPI(options?: string | IPastebinOptions) {

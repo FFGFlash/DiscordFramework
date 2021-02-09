@@ -44,4 +44,5 @@ export interface ClientOptions extends Discord.ClientOptions {
   deleteTimer?: number;
   owners?: Discord.Snowflake[];
   disabledCommands?: string[];
+  embed?: Discord.MessageEmbed | Discord.MessageEmbedOptions;
 }

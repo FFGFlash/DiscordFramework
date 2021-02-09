@@ -21,6 +21,7 @@
 > npm install --save sqlite3
 > npm install --save node-json-db
 > npm install --save pastebin-ts
+> npm install --save google-spreadsheet
 ```
 ##### Chokidar
 Chokidar enables the framework to watch the provided command directory, meaning commands can be loaded, reloaded and unloaded without restarting the bot.
@@ -99,6 +100,26 @@ bot.addPastebinAPI({
    api_user_password: "password"
 });
 ```
+##### Google Spreadsheet
+Google Spreadsheet enables the ability to read/write to google spreadsheets.
+```js
+// Read only.
+bot.addSheetDB("database-name", {
+  id: "spreadsheet-id",
+  key: "google-api-key",
+  populate: true
+});
+
+// Read and Write.
+bot.addSheetDB("database-name", {
+  id: "spreadsheet-id",
+  creds: {
+    private_key: "private-key",
+    client_email: "client-email"
+  },
+  populate: true
+});
+```
 ## Examples
 #### Bot
 ```js
@@ -111,6 +132,7 @@ let bot = new Bot({
     loadCmdDir: true, // Whether or not to load file commands
     deleteTimer: 5, // How long a response should stay in chat
     disableCommands: ["eval", "command"] // List of command names to disable globaly
+    embed: {} // Default embed options used when creating an embed with 'bot.createEmbed()'
 });
 
 bot.addCommand("example", {
