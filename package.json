@@ -2,8 +2,8 @@
   "name": "ffg-discord-framework",
   "version": "3.1.0",
   "description": "A Discord Bot Framework by Drake Taylor",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/bot.js",
+  "types": "dist/bot.d.ts",
   "scripts": {
     "test": "npm run build && node dist/test",
     "build": "npx tsc",
@@ -21,8 +21,7 @@
     "javascript",
     "ts",
     "js",
-    "bot",
-    "database"
+    "bot"
   ],
   "author": "Drake Taylor",
   "license": "MIT",
@@ -32,49 +31,14 @@
   "homepage": "https://FFGFlash.github.io/DiscordFramework",
   "devDependencies": {
     "@discordjs/collection": "^0.1.6",
-    "@types/google-spreadsheet": "^3.0.2",
-    "@types/mysql": "^2.15.17",
     "@types/node": "^14.14.22",
-    "@types/node-fetch": "^2.5.8",
-    "@types/sqlite3": "^3.1.7",
     "chokidar": "^3.5.1",
     "dotenv": "^8.2.0",
-    "node-json-db": "^1.1.0",
-    "pastebin-ts": "^1.2.0",
     "typedoc": "^0.20.20",
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "discord.js": "^12.5.1",
-    "google-spreadsheet": "^3.1.15",
-    "node-fetch": "^2.6.1"
-  },
-  "peerDependencies": {
     "chokidar": "^3.5.1",
-    "mysql": "^2.18.1",
-    "node-json-db": "^1.1.0",
-    "pastebin-ts": "^1.2.0",
-    "sqlite3": "^5.0.1",
-    "google-spreadsheet": "^3.1.15"
-  },
-  "peerDependenciesMeta": {
-    "chokidar": {
-      "optional": true
-    },
-    "mysql": {
-      "optional": true
-    },
-    "node-json-db": {
-      "optional": true
-    },
-    "pastebin-ts": {
-      "optional": true
-    },
-    "sqlite3": {
-      "optional": true
-    },
-    "google-spreadsheet": {
-      "optional": true
-    }
+    "discord.js": "^12.5.1"
   }
 }
