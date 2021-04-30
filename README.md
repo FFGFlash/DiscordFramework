@@ -5,7 +5,6 @@
 
 #### Table of Contents
 - [Installing](#installing)
-    - [Optional Dependencies](#optional-dependencies)
 - [Example](#examples)
     - [Bot](#bot)
     - [Command File](#command-file)
@@ -14,112 +13,6 @@
 ```bat
 > npm install --save ffg-discord-framework
 ```
-#### Optional Dependencies
-```bat
-> npm install --save chokidar
-> npm install --save mysql
-> npm install --save sqlite3
-> npm install --save node-json-db
-> npm install --save pastebin-ts
-> npm install --save google-spreadsheet
-```
-##### Chokidar
-Chokidar enables the framework to watch the provided command directory, meaning commands can be loaded, reloaded and unloaded without restarting the bot.
-##### MYSQL
-MYSQL enables the use of MYSQL Databases.
-```js
-bot.addMysqlDB("database-name", "connection-uri");
-
-bot.addMysqlDB("database-name", {
-    host: "127.0.0.1",
-    port: 3306,
-    user: "username",
-    password: "password",
-    database: "database-name"
-});
-
-bot.addMysqlPoolDB("database-name", "connection-uri");
-
-bot.addMysqlPoolDB("database-name", {
-    host: "127.0.0.1",
-    port: 3306,
-    user: "username",
-    password: "password",
-    database: "database-name",
-    connectionLimit: 10,
-    queueLimit: 0,
-    waitForConnections: true,
-    acquireTimeout: 10
-});
-
-let conn = bot.getDB("database-name");
-conn.connect();
-conn.query("example-query");
-conn.end();
-```
-##### SQLite3
-SQLite3 enables the use of SQLite Databases.
-```js
-bot.addSqliteDB("database-name", "database-filename");
-
-bot.addSqliteDB("database-name", {
-    filename: "database-filename",
-    mode: Sqlite3.OPEN_READWRITE | Sqlite3.OPEN_CREATE,
-    callback: error => {
-        if (error) throw error;
-    }
-});
-
-bot.getDB("database-name").run("example-query");
-```
-##### JSONDB
-JSONDB enables the use of JSON Databases.
-```js
-bot.addJsonDB("database-name", {
-    filename: "database-filename",
-    saveOnPush: true,
-    humanReadable: false,
-    seperator: "/"
-});
-
-bot.addJsonDB("database-name", "database-filename");
-
-bot.getDB("database-name").push("/example", "data");
-```
-##### Pastebin.TS
-PastebinTS enables access to the PastebinAPI.
-```js
-bot.addPastebinAPI();
-
-bot.addPastebinAPI("dev-key");
-
-bot.addPastebinAPI({
-   api_dev_key: "dev-key",
-   api_user_key: "user-key",
-   api_user_name: "username",
-   api_user_password: "password"
-});
-```
-##### Google Spreadsheet
-Google Spreadsheet enables the ability to read/write to google spreadsheets.
-```js
-// Read only.
-bot.addSheetDB("database-name", {
-  id: "spreadsheet-id",
-  key: "google-api-key",
-  populate: true
-});
-
-// Read and Write.
-bot.addSheetDB("database-name", {
-  id: "spreadsheet-id",
-  creds: {
-    private_key: "private-key",
-    client_email: "client-email"
-  },
-  populate: true
-});
-```
 ## Examples
 #### Bot
 ```js
@@ -127,36 +20,70 @@ const { Bot } = require("ffg-discord-framework");
 
 let bot = new Bot({
     prefix: "!", // The global command prefix
-    owners: [12345678901234567890], // A list of Discord IDs that grant bot owner permission
-    cmdDir: "./commands", // Where file commands are stored
-    loadCmdDir: true, // Whether or not to load file commands
-    deleteTimer: 5, // How long a response should stay in chat
-    disableCommands: ["eval", "command"] // List of command names to disable globaly
-    embed: {} // Default embed options used when creating an embed with 'bot.createEmbed()'
+    developers: [12345678901234567890], // A list of Discord IDs that grant bot owner permission
+    deleteTimer: 5, // How long a response should stay in chat *Comming Soon
+    embed: {}, // Default embed options used when creating an embed with 'bot.createEmbed()' *Comming Soon
+    commands: [ // Commands here are added to the "core" module.
+      {name: "example_inline", options: { /* Same as below */ }, execute: function(msg) {}}
+    ],
+    modules: [ // Inline modules
+      {name: "example_inline", options: { /* ... */ }, initialize: function() {}}
+    ]
 });
 
-bot.addCommand("example", {
+bot.addModule("example", {
+  commands: [
+    {name: "test", options: { /* ... */ }, execute = function(msg) {
+      this.data.hello_world += "!";
+      return msg.reply(this.data.hello_world);
+    }}
+  ]
+}).initialize = function() {
+  this.data.hello_world = "Hello World";
+}
+
+bot.core.addCommand("example", {
     description: "An example command.", // A description of the command
-    botOwnerOnly: false, // Whether the author needs bot owner permission or not
+    devOnly: false, // Whether the author needs bot owner permission or not
     permissions: new Discord.Permission(0), // Permissions required to execute this command (guild only)
-    channels: "any", // What ChannelType this command can be used in (dm | guild | any)
+    guildOnly: false, // Determines whether or not the command will be respected within DM channels
     arguments: [ // List of arguments or argument descriptors
         {name: "arg1", options: {optional: false, description: "A required argument."}},
         {name: "arg2", options: {optional: true, description: "An optional argument."}}
     ]
-}).run = (msg, arg1, arg2) => msg.reply(`Example! Arg1: ${arg1} Arg2: ${arg2}`); // Returning a Discord.Message or Promise<Discord.Message> will delete the response after bot.deleteTimer seconds.
+}).execute = (msg, arg1, arg2) => msg.reply(`Example! Arg1: ${arg1} Arg2: ${arg2}`); // Returning a Discord.Message or Promise<Discord.Message> will delete the response after bot.deleteTimer seconds.
 
 bot.login("bot-token");
 ```
+#### Module File
+```js
+// ./modules/example.js
+module.exports = {
+  options: {
+    description: "An example module.",
+    devOnly: true,
+    permissions: new Discord.Permission(0),
+    guildOnly: false,
+    commands: [
+      {name: "example", options: { /* ... */ }, execute: function(msg) {
+        return msg.reply(this.data.global_module_variable);
+      }}
+    ]
+  },
+  initialize: function() {
+    this.data.global_module_variable = "Hello World!"; // This can be accessed by any command within the scope of the module.
+  }
+};
+```
 #### Command File
 ```js
-// ./commands/example.js
+// ./modules/core/example.js
 module.exports = {
-    descriptor: {
+    options: {
         description: "An example command.",
-        botOwnerOnly: false,
+        devOnly: false,
         permissions: new Discord.Permission(0),
-        channels: "any",
+        guildOnly: false,
         arguments: [
             {name: "arg1", options: {optional: false, description: "A required argument."}},
             {name: "arg2", options: {optional: true, description: "An optional argument."}}
