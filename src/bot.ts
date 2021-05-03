@@ -43,22 +43,113 @@ export class Bot extends Discord.Client {
 
     this._options = Object.assign(Bot.DefaultOptions, options);
 
-    this.addModule("core", this._options);
-
-    if (this._options.modules) {
-      for (let m of this._options.modules) {
-        if (!(m instanceof Module)) {
-          m = new Module(m.name, m.options);
-        }
-        this.add(m);
-      }
-    }
-
     this.on("message", async (msg) => {
       let resp = await this.execute(msg);
 
       if (resp) {
         resp.delete({timeout: this._options.deleteTimer});
+      }
+    });
+
+    this.on("ready", () => {
+      this.addModule("core", this._options);
+
+      if (this._options.modules) {
+        for (let m of this._options.modules) {
+          if (!(m instanceof Module)) {
+            m = new Module(m.name, m.options);
+          }
+          this.add(m);
+        }
+      }
+      
+      if (this._options.moduleDir) {
+        let modDir = this._options.moduleDir;
+        let bot = this;
+
+        if (this.watcher) {
+          this.watcher.close();
+        }
+
+        this.watcher = Chokidar.watch(this._options.moduleDir, {
+          ignored: /^\./,
+          depth: 0,
+          persistent: true,
+          awaitWriteFinish: true
+        });
+
+        this.watcher.on("add", path => {
+          let pathArr = path.split("\\");
+          let file = pathArr[pathArr.length - 1];
+          if (!file) return;
+          let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
+          path = resolve(`./${path}`);
+          let data = superRequire(path);
+          let module;
+          if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
+            console.log(`Loading Module "${name}" from "${path}"`);
+            module = this.addModule(name, data.options);
+            if (!data.initialize) return;
+            data.initialize.call(module);
+          } else {
+            let modName = pathArr[pathArr.length - 2];
+            console.log(`Loading Command "${name}" from "${path}"`);
+            module = bot.modules.get(modName);
+            if (!module) return console.error(`Failed to Load Command, Missing "${modName}" Module`);
+            module.addCommand(name, data.options).execute = data.execute;
+          }
+        });
+
+        this.watcher.on("change", path => {
+          let pathArr = path.split("\\");
+          let file = pathArr[pathArr.length - 1];
+          if (!file) return;
+          let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
+          path = resolve(`./${path}`);
+          let data = superRequire(path);
+          let module;
+          if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
+            console.log(`Reloading Module "${name}" from "${path}"`);
+            this.removeModule(name);
+            module = this.addModule(name, data.options);
+            if (!data.initialize) return;
+            data.initialize.call(module);
+          } else {
+            let modName = pathArr[pathArr.length - 2];
+            console.log(`Reloading Command "${name}" from "${path}"`);
+            module = bot.modules.get(modName);
+            if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
+            module.removeCommand(name);
+            module.addCommand(name, data.options).execute = data.execute;
+          }
+        });
+
+        this.watcher.on("unlink", path => {
+          let pathArr = path.split("\\");
+          let file = pathArr[pathArr.length - 1];
+          if (!file) return;
+          let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
+          path = resolve(`./${path}`);
+          let module;
+          if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
+            console.log(`Unloading Module "${name}" from "${path}"`);
+            this.removeModule(name);
+          } else {
+            let modName = pathArr[pathArr.length - 2];
+            console.log(`Unloading Command "${name}" from "${path}"`);
+            module = bot.modules.get(modName);
+            if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
+            module.removeCommand(name);
+          }
+        });
+
+        this.watcher.on("error", err => {
+          throw err;
+        });
+
+        for (let mod of this.modules.values()) {
+          mod.enable(this);
+        }
       }
     });
   }
@@ -151,90 +242,6 @@ export class Bot extends Discord.Client {
   }
 
   login(token?: string): Promise<string> {
-    if (this._options.moduleDir) {
-      let modDir = this._options.moduleDir;
-      let bot = this;
-      this.watcher = Chokidar.watch(this._options.moduleDir, {
-        ignored: /^\./,
-        depth: 0,
-        persistent: true,
-        awaitWriteFinish: true
-      });
-
-      this.watcher.on("add", path => {
-        let pathArr = path.split("\\");
-        let file = pathArr[pathArr.length - 1];
-        if (!file) return;
-        let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-        path = resolve(`./${path}`);
-        let data = superRequire(path);
-        let module;
-        if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
-          console.log(`Loading Module "${name}" from "${path}"`);
-          module = this.addModule(name, data.options);
-          if (!data.initialize) return;
-          data.initialize.call(module);
-        } else {
-          let modName = pathArr[pathArr.length - 2];
-          console.log(`Loading Command "${name}" from "${path}"`);
-          module = bot.modules.get(modName);
-          if (!module) return console.error(`Failed to Load Command, Missing "${modName}" Module`);
-          module.addCommand(name, data.options).execute = data.execute;
-        }
-      });
-
-      this.watcher.on("change", path => {
-        let pathArr = path.split("\\");
-        let file = pathArr[pathArr.length - 1];
-        if (!file) return;
-        let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-        path = resolve(`./${path}`);
-        let data = superRequire(path);
-        let module;
-        if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
-          console.log(`Reloading Module "${name}" from "${path}"`);
-          this.removeModule(name);
-          module = this.addModule(name, data.options);
-          if (!data.initialize) return;
-          data.initialize.call(module);
-        } else {
-          let modName = pathArr[pathArr.length - 2];
-          console.log(`Reloading Command "${name}" from "${path}"`);
-          module = bot.modules.get(modName);
-          if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
-          module.removeCommand(name);
-          module.addCommand(name, data.options).execute = data.execute;
-        }
-      });
-
-      this.watcher.on("unlink", path => {
-        let pathArr = path.split("\\");
-        let file = pathArr[pathArr.length - 1];
-        if (!file) return;
-        let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-        path = resolve(`./${path}`);
-        let module;
-        if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
-          console.log(`Unloading Module "${name}" from "${path}"`);
-          this.removeModule(name);
-        } else {
-          let modName = pathArr[pathArr.length - 2];
-          console.log(`Unloading Command "${name}" from "${path}"`);
-          module = bot.modules.get(modName);
-          if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
-          module.removeCommand(name);
-        }
-      });
-
-      this.watcher.on("error", err => {
-        throw err;
-      });
-
-      for (let mod of this.modules.values()) {
-        mod.enable(this);
-      }
-    }
-
     return super.login(token);
   }
 }

@@ -43,7 +43,6 @@ export class Module {
     this.bot = bot;
     if (!this.bot.watcher || !this.bot._options.moduleDir) return;
     let path = join(this.bot._options.moduleDir, this.name);
-    console.log(path);
     return this.bot.watcher.add(path);
   }
 
