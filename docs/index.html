@@ -74,10 +74,7 @@
 					<h4>Table of Contents</h4>
 				</a>
 				<ul>
-					<li><a href="#installing">Installing</a><ul>
-							<li><a href="#optional-dependencies">Optional Dependencies</a></li>
-						</ul>
-					</li>
+					<li><a href="#installing">Installing</a></li>
 					<li><a href="#examples">Example</a><ul>
 							<li><a href="#bot">Bot</a></li>
 							<li><a href="#command-file">Command File</a></li>
@@ -87,121 +84,7 @@
 				<a href="#installing" id="installing" style="color: inherit; text-decoration: none;">
 					<h2>Installing</h2>
 				</a>
-				<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save ffg-discord-framework</span>
-</code></pre>
-				<a href="#optional-dependencies" id="optional-dependencies" style="color: inherit; text-decoration: none;">
-					<h4>Optional Dependencies</h4>
-				</a>
-				<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save chokidar</span>
-<span style="color: #000000">&gt; npm install --save mysql</span>
-<span style="color: #000000">&gt; npm install --save sqlite3</span>
-<span style="color: #000000">&gt; npm install --save node-json-db</span>
-<span style="color: #000000">&gt; npm install --save pastebin-ts</span>
-<span style="color: #000000">&gt; npm install --save google-spreadsheet</span>
-</code></pre>
-				<a href="#chokidar" id="chokidar" style="color: inherit; text-decoration: none;">
-					<h5>Chokidar</h5>
-				</a>
-				<p>Chokidar enables the framework to watch the provided command directory, meaning commands can be loaded, reloaded and unloaded without restarting the bot.</p>
-				<a href="#mysql" id="mysql" style="color: inherit; text-decoration: none;">
-					<h5>MYSQL</h5>
-				</a>
-				<p>MYSQL enables the use of MYSQL Databases.</p>
-				<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;connection-uri&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">    </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;127.0.0.1&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">port:</span><span style="color: #000000"> </span><span style="color: #098658">3306</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">user:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;username&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;password&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">database:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-name&quot;</span>
-<span style="color: #000000">});</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlPoolDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;connection-uri&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addMysqlPoolDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">    </span><span style="color: #001080">host:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;127.0.0.1&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">port:</span><span style="color: #000000"> </span><span style="color: #098658">3306</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">user:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;username&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;password&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">database:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">connectionLimit:</span><span style="color: #000000"> </span><span style="color: #098658">10</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">queueLimit:</span><span style="color: #000000"> </span><span style="color: #098658">0</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">waitForConnections:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">acquireTimeout:</span><span style="color: #000000"> </span><span style="color: #098658">10</span>
-<span style="color: #000000">});</span>
-
-<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">conn</span><span style="color: #000000"> = </span><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">getDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">);</span>
-<span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #795E26">connect</span><span style="color: #000000">();</span>
-<span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #795E26">query</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example-query&quot;</span><span style="color: #000000">);</span>
-<span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #795E26">end</span><span style="color: #000000">();</span>
-</code></pre>
-				<a href="#sqlite3" id="sqlite3" style="color: inherit; text-decoration: none;">
-					<h5>SQLite3</h5>
-				</a>
-				<p>SQLite3 enables the use of SQLite Databases.</p>
-				<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSqliteDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;database-filename&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSqliteDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">    </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-filename&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #001080">Sqlite3</span><span style="color: #000000">.</span><span style="color: #0070C1">OPEN_READWRITE</span><span style="color: #000000"> | </span><span style="color: #001080">Sqlite3</span><span style="color: #000000">.</span><span style="color: #0070C1">OPEN_CREATE</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #795E26">callback</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #001080">error</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #AF00DB">throw</span><span style="color: #000000"> </span><span style="color: #001080">error</span><span style="color: #000000">;</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">});</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">getDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">run</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example-query&quot;</span><span style="color: #000000">);</span>
-</code></pre>
-				<a href="#jsondb" id="jsondb" style="color: inherit; text-decoration: none;">
-					<h5>JSONDB</h5>
-				</a>
-				<p>JSONDB enables the use of JSON Databases.</p>
-				<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addJsonDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">    </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;database-filename&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">saveOnPush:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">humanReadable:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">seperator:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;/&quot;</span>
-<span style="color: #000000">});</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addJsonDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;database-filename&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">getDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">).</span><span style="color: #795E26">push</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;/example&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;data&quot;</span><span style="color: #000000">);</span>
-</code></pre>
-				<a href="#pastebints" id="pastebints" style="color: inherit; text-decoration: none;">
-					<h5>Pastebin.TS</h5>
-				</a>
-				<p>PastebinTS enables access to the PastebinAPI.</p>
-				<pre><code class="language-js"><span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addPastebinAPI</span><span style="color: #000000">();</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addPastebinAPI</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;dev-key&quot;</span><span style="color: #000000">);</span>
-
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addPastebinAPI</span><span style="color: #000000">({</span>
-<span style="color: #000000">   </span><span style="color: #001080">api_dev_key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;dev-key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">   </span><span style="color: #001080">api_user_key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;user-key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">   </span><span style="color: #001080">api_user_name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;username&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">   </span><span style="color: #001080">api_user_password:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;password&quot;</span>
-<span style="color: #000000">});</span>
-</code></pre>
-				<a href="#google-spreadsheet" id="google-spreadsheet" style="color: inherit; text-decoration: none;">
-					<h5>Google Spreadsheet</h5>
-				</a>
-				<p>Google Spreadsheet enables the ability to read/write to google spreadsheets.</p>
-				<pre><code class="language-js"><span style="color: #008000">// Read only.</span>
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSheetDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">  </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;spreadsheet-id&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;google-api-key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">populate:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">});</span>
-
-<span style="color: #008000">// Read and Write.</span>
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addSheetDB</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;database-name&quot;</span><span style="color: #000000">, {</span>
-<span style="color: #000000">  </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;spreadsheet-id&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">creds:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">private_key:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;private-key&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">client_email:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;client-email&quot;</span>
-<span style="color: #000000">  },</span>
-<span style="color: #000000">  </span><span style="color: #001080">populate:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span>
-<span style="color: #000000">});</span>
+				<pre><code class="language-bat"><span style="color: #000000">&gt; npm install --save ffg-discord-framework@alpha</span>
 </code></pre>
 				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
 					<h2>Examples</h2>
@@ -213,37 +96,72 @@
 
 <span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">bot</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Bot</span><span style="color: #000000">({</span>
 <span style="color: #000000">    </span><span style="color: #001080">prefix:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;!&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// The global command prefix</span>
-<span style="color: #000000">    </span><span style="color: #001080">owners:</span><span style="color: #000000"> [</span><span style="color: #098658">12345678901234567890</span><span style="color: #000000">], </span><span style="color: #008000">// A list of Discord IDs that grant bot owner permission</span>
-<span style="color: #000000">    </span><span style="color: #001080">cmdDir:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;./commands&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// Where file commands are stored</span>
-<span style="color: #000000">    </span><span style="color: #001080">loadCmdDir:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Whether or not to load file commands</span>
-<span style="color: #000000">    </span><span style="color: #001080">deleteTimer:</span><span style="color: #000000"> </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #008000">// How long a response should stay in chat</span>
-<span style="color: #000000">    </span><span style="color: #001080">disableCommands:</span><span style="color: #000000"> [</span><span style="color: #A31515">&quot;eval&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;command&quot;</span><span style="color: #000000">] </span><span style="color: #008000">// List of command names to disable globaly</span>
-<span style="color: #000000">    </span><span style="color: #001080">embed</span><span style="color: #000000">: {} </span><span style="color: #008000">// Default embed options used when creating an embed with &#039;bot.createEmbed()&#039;</span>
+<span style="color: #000000">    </span><span style="color: #001080">developers:</span><span style="color: #000000"> [</span><span style="color: #098658">12345678901234567890</span><span style="color: #000000">], </span><span style="color: #008000">// A list of Discord IDs that grant bot owner permission</span>
+<span style="color: #000000">    </span><span style="color: #001080">deleteTimer:</span><span style="color: #000000"> </span><span style="color: #098658">5</span><span style="color: #000000">, </span><span style="color: #008000">// How long a response should stay in chat *Comming Soon</span>
+<span style="color: #000000">    </span><span style="color: #001080">embed:</span><span style="color: #000000"> {}, </span><span style="color: #008000">// Default embed options used when creating an embed with &#039;bot.createEmbed()&#039; *Comming Soon</span>
+<span style="color: #000000">    </span><span style="color: #001080">commands:</span><span style="color: #000000"> [ </span><span style="color: #008000">// Commands here are added to the &quot;core&quot; module.</span>
+<span style="color: #000000">      {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;example_inline&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> { </span><span style="color: #008000">/* Same as below */</span><span style="color: #000000"> }, </span><span style="color: #795E26">execute</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">msg</span><span style="color: #000000">) {}}</span>
+<span style="color: #000000">    ],</span>
+<span style="color: #000000">    </span><span style="color: #001080">modules:</span><span style="color: #000000"> [ </span><span style="color: #008000">// Inline modules</span>
+<span style="color: #000000">      {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;example_inline&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> { </span><span style="color: #008000">/* ... */</span><span style="color: #000000"> }, </span><span style="color: #795E26">initialize</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000">() {}}</span>
+<span style="color: #000000">    ]</span>
 <span style="color: #000000">});</span>
 
-<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addCommand</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">addModule</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example&quot;</span><span style="color: #000000">, {</span>
+<span style="color: #000000">  </span><span style="color: #001080">commands:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;test&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> { </span><span style="color: #008000">/* ... */</span><span style="color: #000000"> }, </span><span style="color: #795E26">execute</span><span style="color: #000000"> = </span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">msg</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">hello_world</span><span style="color: #000000"> += </span><span style="color: #A31515">&quot;!&quot;</span><span style="color: #000000">;</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">msg</span><span style="color: #000000">.</span><span style="color: #795E26">reply</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">hello_world</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }}</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">initialize</span><span style="color: #000000"> = </span><span style="color: #0000FF">function</span><span style="color: #000000">() {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">hello_world</span><span style="color: #000000"> = </span><span style="color: #A31515">&quot;Hello World&quot;</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #001080">core</span><span style="color: #000000">.</span><span style="color: #795E26">addCommand</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;example&quot;</span><span style="color: #000000">, {</span>
 <span style="color: #000000">    </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;An example command.&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// A description of the command</span>
-<span style="color: #000000">    </span><span style="color: #001080">botOwnerOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #008000">// Whether the author needs bot owner permission or not</span>
+<span style="color: #000000">    </span><span style="color: #001080">devOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #008000">// Whether the author needs bot owner permission or not</span>
 <span style="color: #000000">    </span><span style="color: #001080">permissions:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Discord</span><span style="color: #000000">.</span><span style="color: #267F99">Permission</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">), </span><span style="color: #008000">// Permissions required to execute this command (guild only)</span>
-<span style="color: #000000">    </span><span style="color: #001080">channels:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;any&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// What ChannelType this command can be used in (dm | guild | any)</span>
+<span style="color: #000000">    </span><span style="color: #001080">guildOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #008000">// Determines whether or not the command will be respected within DM channels</span>
 <span style="color: #000000">    </span><span style="color: #001080">arguments:</span><span style="color: #000000"> [ </span><span style="color: #008000">// List of arguments or argument descriptors</span>
 <span style="color: #000000">        {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;arg1&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span><span style="color: #001080">optional:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;A required argument.&quot;</span><span style="color: #000000">}},</span>
 <span style="color: #000000">        {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;arg2&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span><span style="color: #001080">optional:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;An optional argument.&quot;</span><span style="color: #000000">}}</span>
 <span style="color: #000000">    ]</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">run</span><span style="color: #000000"> = (</span><span style="color: #001080">msg</span><span style="color: #000000">, </span><span style="color: #001080">arg1</span><span style="color: #000000">, </span><span style="color: #001080">arg2</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">msg</span><span style="color: #000000">.</span><span style="color: #795E26">reply</span><span style="color: #000000">(</span><span style="color: #A31515">`Example! Arg1: </span><span style="color: #0000FF">${</span><span style="color: #001080">arg1</span><span style="color: #0000FF">}</span><span style="color: #A31515"> Arg2: </span><span style="color: #0000FF">${</span><span style="color: #001080">arg2</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">); </span><span style="color: #008000">// Returning a Discord.Message or Promise&lt;Discord.Message&gt; will delete the response after bot.deleteTimer seconds.</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">execute</span><span style="color: #000000"> = (</span><span style="color: #001080">msg</span><span style="color: #000000">, </span><span style="color: #001080">arg1</span><span style="color: #000000">, </span><span style="color: #001080">arg2</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">msg</span><span style="color: #000000">.</span><span style="color: #795E26">reply</span><span style="color: #000000">(</span><span style="color: #A31515">`Example! Arg1: </span><span style="color: #0000FF">${</span><span style="color: #001080">arg1</span><span style="color: #0000FF">}</span><span style="color: #A31515"> Arg2: </span><span style="color: #0000FF">${</span><span style="color: #001080">arg2</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">); </span><span style="color: #008000">// Returning a Discord.Message or Promise&lt;Discord.Message&gt; will delete the response after bot.deleteTimer seconds.</span>
 
 <span style="color: #001080">bot</span><span style="color: #000000">.</span><span style="color: #795E26">login</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;bot-token&quot;</span><span style="color: #000000">);</span>
+</code></pre>
+				<a href="#module-file" id="module-file" style="color: inherit; text-decoration: none;">
+					<h4>Module File</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #008000">// ./modules/example.js</span>
+<span style="color: #267F99">module</span><span style="color: #000000">.</span><span style="color: #267F99">exports</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;An example module.&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">devOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">permissions:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Discord</span><span style="color: #000000">.</span><span style="color: #267F99">Permission</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">),</span>
+<span style="color: #000000">    </span><span style="color: #001080">guildOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">commands:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;example&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> { </span><span style="color: #008000">/* ... */</span><span style="color: #000000"> }, </span><span style="color: #795E26">execute</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">msg</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">msg</span><span style="color: #000000">.</span><span style="color: #795E26">reply</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">global_module_variable</span><span style="color: #000000">);</span>
+<span style="color: #000000">      }}</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #795E26">initialize</span><span style="color: #001080">:</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000">() {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">data</span><span style="color: #000000">.</span><span style="color: #001080">global_module_variable</span><span style="color: #000000"> = </span><span style="color: #A31515">&quot;Hello World!&quot;</span><span style="color: #000000">; </span><span style="color: #008000">// This can be accessed by any command within the scope of the module.</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">};</span>
 </code></pre>
 				<a href="#command-file" id="command-file" style="color: inherit; text-decoration: none;">
 					<h4>Command File</h4>
 				</a>
-				<pre><code class="language-js"><span style="color: #008000">// ./commands/example.js</span>
+				<pre><code class="language-js"><span style="color: #008000">// ./modules/core/example.js</span>
 <span style="color: #267F99">module</span><span style="color: #000000">.</span><span style="color: #267F99">exports</span><span style="color: #000000"> = {</span>
-<span style="color: #000000">    </span><span style="color: #001080">descriptor:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">        </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;An example command.&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">        </span><span style="color: #001080">botOwnerOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #001080">devOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
 <span style="color: #000000">        </span><span style="color: #001080">permissions:</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Discord</span><span style="color: #000000">.</span><span style="color: #267F99">Permission</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">),</span>
-<span style="color: #000000">        </span><span style="color: #001080">channels:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;any&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #001080">guildOnly:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">,</span>
 <span style="color: #000000">        </span><span style="color: #001080">arguments:</span><span style="color: #000000"> [</span>
 <span style="color: #000000">            {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;arg1&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span><span style="color: #001080">optional:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000">, </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;A required argument.&quot;</span><span style="color: #000000">}},</span>
 <span style="color: #000000">            {</span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;arg2&quot;</span><span style="color: #000000">, </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span><span style="color: #001080">optional:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">description:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;An optional argument.&quot;</span><span style="color: #000000">}}</span>
