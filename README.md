@@ -11,7 +11,7 @@
 
 ## Installing
 ```bat
-> npm install --save ffg-discord-framework
+> npm install --save ffg-discord-framework@alpha
 ```
 ## Examples
 #### Bot
