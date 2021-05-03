@@ -1,17 +1,7 @@
 import { Command, CommandOptions } from "./command";
-import * as Chokidar from "chokidar";
-import { resolve } from "path";
+import { join } from "path";
 import { Bot } from "../bot";
 import { Message } from "discord.js";
-
-function superRequire(file: string) {
-  try {
-    delete require.cache[require.resolve(file)];
-    return require(file);
-  } catch(err) {
-    throw err;
-  }
-}
 
 export interface ModuleOptions extends CommandOptions {
   prefix?: string;
@@ -27,54 +17,10 @@ export class Module {
   data: {[key: string]: any} = {};
 
   commands = new Map<string, Command>();
-  watcher: Chokidar.FSWatcher;
 
   constructor(name: string, options? : ModuleOptions) {
     this.name = name;
     this.options = options;
-
-    let watch = Chokidar.watch(`./modules/${name}`, {
-      ignored: /^\./,
-      depth: 0,
-      persistent: true,
-      awaitWriteFinish: true
-    });
-
-    watch.on("add", path => {
-      let file = path.split("\\").pop();
-      if (!file) return;
-      let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-      path = resolve(`./${path}`);
-      console.log(`Loading Command "${name}" from "${path}"`);
-      let data = superRequire(path);
-      this.addCommand(name, data.options).execute = data.execute;
-    });
-
-    watch.on("change", path => {
-      let file = path.split("\\").pop();
-      if (!file) return;
-      let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-      path = resolve(`./${path}`);
-      console.log(`Reloading Command "${name}" from "${path}"`);
-      let data = superRequire(path);
-      this.removeCommand(name);
-      this.addCommand(name, data.options).execute = data.execute;
-    });
-
-    watch.on("unlink", path => {
-      let file = path.split("\\").pop();
-      if (!file) return;
-      let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-      path = resolve(`./${path}`);
-      console.log(`Reloading Command "${name}" from "${path}"`);
-      this.removeCommand(name);
-    });
-
-    watch.on("error", err => {
-      throw err;
-    });
-
-    this.watcher = watch;
 
     if (options && options.commands) {
       for (let c of options.commands) {
@@ -85,6 +31,20 @@ export class Module {
         this.add(c);
       }
     }
+  }
+
+  disable() {
+    if (!this.bot || !this.bot.watcher || !this.bot._options.moduleDir) return;
+    let path = join(this.bot._options.moduleDir, this.name);
+    return this.bot.watcher.unwatch(path);
+  }
+
+  enable(bot: Bot) {
+    this.bot = bot;
+    if (!this.bot.watcher || !this.bot._options.moduleDir) return;
+    let path = join(this.bot._options.moduleDir, this.name);
+    console.log(path);
+    return this.bot.watcher.add(path);
   }
 
   getPrefix() {

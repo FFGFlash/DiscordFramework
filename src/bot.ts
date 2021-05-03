@@ -16,12 +16,16 @@ function superRequire(file: string) {
 
 export interface BotOptions extends Discord.ClientOptions, ModuleOptions {
   developers?: string[];
+  moduleDir?: string;
+  deleteTimer?: number;
   modules?: (Module | {name: string, options: ModuleOptions})[];
 }
 
 export class Bot extends Discord.Client {
   static readonly DefaultOptions: BotOptions = {
+    moduleDir: "./modules",
     developers: [],
+    deleteTimer: 5000,
 
     prefix: "!",
 
@@ -31,6 +35,7 @@ export class Bot extends Discord.Client {
   }
 
   private modules = new Map<string, Module>();
+  watcher?: Chokidar.FSWatcher;
   _options: BotOptions;
 
   constructor(options?: BotOptions) {
@@ -38,9 +43,7 @@ export class Bot extends Discord.Client {
 
     this._options = Object.assign(Bot.DefaultOptions, options);
 
-    let core = new Module("core", this._options);
-
-    this.add(core);
+    this.addModule("core", this._options);
 
     if (this._options.modules) {
       for (let m of this._options.modules) {
@@ -55,12 +58,8 @@ export class Bot extends Discord.Client {
       let resp = await this.execute(msg);
 
       if (resp) {
-        resp.delete({timeout: 5000});
+        resp.delete({timeout: this._options.deleteTimer});
       }
-    });
-
-    this.on("ready", () => {
-
     });
   }
 
@@ -121,7 +120,7 @@ export class Bot extends Discord.Client {
 
   add<T>(object: T): T {
     if (object instanceof Module) {
-      object.bot = this;
+      object.enable(this);
       this.modules.set(object.name, object);
     } else {
       let core = this.modules.get("core");
@@ -134,6 +133,7 @@ export class Bot extends Discord.Client {
   remove<T>(object: T): T {
     if (object instanceof Module) {
       object.bot = undefined;
+      object.disable();
       this.modules.delete(object.name);
     }
     return object;
@@ -151,50 +151,89 @@ export class Bot extends Discord.Client {
   }
 
   login(token?: string): Promise<string> {
-    let watch = Chokidar.watch("./modules", {
-      ignored: /^\./,
-      depth: 0,
-      persistent: true,
-      awaitWriteFinish: true
-    });
+    if (this._options.moduleDir) {
+      let modDir = this._options.moduleDir;
+      let bot = this;
+      this.watcher = Chokidar.watch(this._options.moduleDir, {
+        ignored: /^\./,
+        depth: 0,
+        persistent: true,
+        awaitWriteFinish: true
+      });
 
-    watch.on("add", path => {
-      let file = path.split("\\").pop();
-      if (!file) return;
-      let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-      path = resolve(`./${path}`);
-      console.log(`Loading Module "${name}" from "${path}"`);
-      let data = superRequire(path);
-      let module = this.addModule(name, data.options);
-      if (!data.initialize) return;
-      data.initialize.call(module);
-    });
+      this.watcher.on("add", path => {
+        let pathArr = path.split("\\");
+        let file = pathArr[pathArr.length - 1];
+        if (!file) return;
+        let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
+        path = resolve(`./${path}`);
+        let data = superRequire(path);
+        let module;
+        if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
+          console.log(`Loading Module "${name}" from "${path}"`);
+          module = this.addModule(name, data.options);
+          if (!data.initialize) return;
+          data.initialize.call(module);
+        } else {
+          let modName = pathArr[pathArr.length - 2];
+          console.log(`Loading Command "${name}" from "${path}"`);
+          module = bot.modules.get(modName);
+          if (!module) return console.error(`Failed to Load Command, Missing "${modName}" Module`);
+          module.addCommand(name, data.options).execute = data.execute;
+        }
+      });
 
-    watch.on("change", path => {
-      let file = path.split("\\").pop();
-      if (!file) return;
-      let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-      path = resolve(`./${path}`);
-      console.log(`Reloading Module "${name}" from "${path}"`);
-      let data = superRequire(path);
-      this.removeModule(name);
-      let module = this.addModule(name, data.options);
-      if (!data.initialize) return;
-      data.initialize.call(module);
-    });
+      this.watcher.on("change", path => {
+        let pathArr = path.split("\\");
+        let file = pathArr[pathArr.length - 1];
+        if (!file) return;
+        let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
+        path = resolve(`./${path}`);
+        let data = superRequire(path);
+        let module;
+        if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
+          console.log(`Reloading Module "${name}" from "${path}"`);
+          this.removeModule(name);
+          module = this.addModule(name, data.options);
+          if (!data.initialize) return;
+          data.initialize.call(module);
+        } else {
+          let modName = pathArr[pathArr.length - 2];
+          console.log(`Reloading Command "${name}" from "${path}"`);
+          module = bot.modules.get(modName);
+          if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
+          module.removeCommand(name);
+          module.addCommand(name, data.options).execute = data.execute;
+        }
+      });
 
-    watch.on("unlink", path => {
-      let file = path.split("\\").pop();
-      if (!file) return;
-      let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
-      path = resolve(`./${path}`);
-      console.log(`Reloading Module "${name}" from "${path}"`);
-      this.removeModule(name);
-    });
+      this.watcher.on("unlink", path => {
+        let pathArr = path.split("\\");
+        let file = pathArr[pathArr.length - 1];
+        if (!file) return;
+        let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
+        path = resolve(`./${path}`);
+        let module;
+        if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
+          console.log(`Unloading Module "${name}" from "${path}"`);
+          this.removeModule(name);
+        } else {
+          let modName = pathArr[pathArr.length - 2];
+          console.log(`Unloading Command "${name}" from "${path}"`);
+          module = bot.modules.get(modName);
+          if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
+          module.removeCommand(name);
+        }
+      });
 
-    watch.on("error", err => {
-      throw err;
-    });
+      this.watcher.on("error", err => {
+        throw err;
+      });
+
+      for (let mod of this.modules.values()) {
+        mod.enable(this);
+      }
+    }
 
     return super.login(token);
   }
