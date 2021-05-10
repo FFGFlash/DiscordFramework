@@ -1,11 +1,12 @@
 import { Command, CommandOptions } from "./command";
 import { join } from "path";
 import { Bot } from "../bot";
-import { Message } from "discord.js";
+import { Message, MessageEmbedOptions, MessageEmbed } from "discord.js";
 
 export interface ModuleOptions extends CommandOptions {
   prefix?: string;
   commands?: (Command | {name: string, options: CommandOptions, execute: (msg: Message, ...args: any[]) => Message | Promise<Message> | undefined})[];
+  embed?: MessageEmbedOptions;
 }
 
 export class Module {
@@ -46,8 +47,31 @@ export class Module {
     return this.bot.watcher.add(path);
   }
 
-  getPrefix() {
-    return (this.options && this.options.prefix ? this.options.prefix : this.bot ? this.bot._options.prefix : Bot.DefaultOptions.prefix) as string;
+  createEmbed(options?: MessageEmbedOptions) {
+    options = Object.assign({}, this.embed, options);
+    return new MessageEmbed(options);
+  }
+
+  get embed() {
+    if (this.options && this.options.embed) {
+      return this.options.embed;
+    } else if (this.bot && this.bot._options.embed) {
+      return this.bot._options.embed;
+    } else if (Bot.DefaultOptions.embed) {
+      return Bot.DefaultOptions.embed;
+    }
+    return {};
+  }
+
+  get prefix() {
+    if (this.options && this.options.prefix) {
+      return this.options.prefix;
+    } else if (this.bot && this.bot._options.prefix) {
+      return this.bot._options.prefix;
+    } else if (Bot.DefaultOptions.prefix) {
+      return Bot.DefaultOptions.prefix;
+    }
+    return "!";
   }
 
   add<T>(object: T): T {

@@ -2,6 +2,8 @@ import { Module } from "./module";
 import { Argument, ArgumentOptions } from "./argument";
 import { Permissions, Message } from "discord.js";
 
+export type CommandExecuteResponse = Message | void;
+
 export interface CommandOptions {
   devOnly?: boolean;
   permissions?: Permissions;
@@ -16,7 +18,7 @@ export class Command {
 
   arguments = new Map<string, Argument>();
 
-  private _execute: (this: Module, msg: Message, ...args: any) => Message | Promise<Message> | undefined = function(msg) {
+  private _execute: (this: Module, msg: Message, ...args: any) => CommandExecuteResponse | Promise<CommandExecuteResponse> = function(msg) {
     return msg.reply("Hello World!");
   }
 
@@ -48,5 +50,20 @@ export class Command {
 
   set execute(execute) {
     this._execute = execute;
+  }
+
+  get formated() {
+    let args: Array<string> = [];
+    for (let arg of this.arguments.values()) {
+      args.push(arg.formated);
+    }
+    return `${this.name} ${args.join(" ")}`;
+  }
+
+  get description() {
+    if (this.options && this.options.description) {
+      return this.options.description;
+    }
+    return "No Description Provided.";
   }
 }

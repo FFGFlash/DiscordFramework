@@ -94,13 +94,20 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="module.html#embed" class="tsd-kind-icon">embed</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="module.html#prefix" class="tsd-kind-icon">prefix</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="module.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="module.html#addcommand" class="tsd-kind-icon">add<wbr>Command</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="module.html#createembed" class="tsd-kind-icon">create<wbr>Embed</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="module.html#disable" class="tsd-kind-icon">disable</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="module.html#enable" class="tsd-kind-icon">enable</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="module.html#getprefix" class="tsd-kind-icon">get<wbr>Prefix</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="module.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="module.html#removecommand" class="tsd-kind-icon">remove<wbr>Command</a></li>
 							</ul>
@@ -120,7 +127,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L19">src/classes/module.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L20">src/classes/module.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -142,10 +149,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="bot" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> bot</h3>
-					<div class="tsd-signature tsd-kind-icon">bot<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a></div>
+					<div class="tsd-signature tsd-kind-icon">bot<span class="tsd-signature-symbol">:</span> <a href="bot.html" class="tsd-signature-type" data-tsd-kind="Class">Bot</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L15">src/classes/module.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L16">src/classes/module.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,17 +162,17 @@
 					<div class="tsd-signature tsd-kind-icon">commands<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L19">src/classes/module.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L20">src/classes/module.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L17">src/classes/module.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L18">src/classes/module.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -183,19 +190,56 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L14">src/classes/module.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L15">src/classes/module.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="options" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/moduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ModuleOptions</a></div>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/moduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ModuleOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L12">src/classes/module.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L13">src/classes/module.ts:13</a></li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="embed" class="tsd-anchor"></a>
+					<h3>embed</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> embed<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessageEmbedOptions</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L55">src/classes/module.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MessageEmbedOptions</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="prefix" class="tsd-anchor"></a>
+					<h3>prefix</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> prefix<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L66">src/classes/module.ts:66</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -210,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L53">src/classes/module.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L77">src/classes/module.ts:77</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -239,7 +283,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L67">src/classes/module.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L91">src/classes/module.ts:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -256,6 +300,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createembed" class="tsd-anchor"></a>
+					<h3>create<wbr>Embed</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Embed<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">MessageEmbedOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MessageEmbed</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L50">src/classes/module.ts:50</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">MessageEmbedOptions</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">MessageEmbed</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="disable" class="tsd-anchor"></a>
 					<h3>disable</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -265,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L36">src/classes/module.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L37">src/classes/module.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -282,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L42">src/classes/module.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L43">src/classes/module.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -292,23 +359,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getprefix" class="tsd-anchor"></a>
-					<h3>get<wbr>Prefix</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Prefix<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L49">src/classes/module.ts:49</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -322,7 +372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L60">src/classes/module.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L84">src/classes/module.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -351,7 +401,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/50e6556/src/classes/module.ts#L71">src/classes/module.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/FFGFlash/DiscordFramework/blob/9b2401b/src/classes/module.ts#L95">src/classes/module.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -408,6 +458,12 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="module.html#options" class="tsd-kind-icon">options</a>
 							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="module.html#embed" class="tsd-kind-icon">embed</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="module.html#prefix" class="tsd-kind-icon">prefix</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="module.html#add" class="tsd-kind-icon">add</a>
 							</li>
@@ -415,13 +471,13 @@
 								<a href="module.html#addcommand" class="tsd-kind-icon">add<wbr>Command</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="module.html#createembed" class="tsd-kind-icon">create<wbr>Embed</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="module.html#disable" class="tsd-kind-icon">disable</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="module.html#enable" class="tsd-kind-icon">enable</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="module.html#getprefix" class="tsd-kind-icon">get<wbr>Prefix</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="module.html#remove" class="tsd-kind-icon">remove</a>
@@ -444,6 +500,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/moduleoptions.html" class="tsd-kind-icon">Module<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#commandexecuteresponse" class="tsd-kind-icon">Command<wbr>Execute<wbr>Response</a>
 					</li>
 				</ul>
 			</nav>

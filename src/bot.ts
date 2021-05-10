@@ -2,6 +2,7 @@ import * as Discord from "discord.js";
 import * as Chokidar from "chokidar";
 import { resolve } from "path";
 import { Module, ModuleOptions, Command, CommandOptions } from "./classes";
+import { HelpCommand, EvalCommand, AboutCommand } from "./commands";
 
 export * from "./classes";
 
@@ -19,6 +20,7 @@ export interface BotOptions extends Discord.ClientOptions, ModuleOptions {
   moduleDir?: string;
   deleteTimer?: number;
   modules?: (Module | {name: string, options: ModuleOptions})[];
+  about?: string;
 }
 
 export class Bot extends Discord.Client {
@@ -26,15 +28,17 @@ export class Bot extends Discord.Client {
     moduleDir: "./modules",
     developers: [],
     deleteTimer: 5000,
+    about: "A Discord bot made using ffg-discord-framework.",
 
     prefix: "!",
+    embed: {},
 
     devOnly: false,
     guildOnly: false,
     permissions: new Discord.Permissions(0)
   }
 
-  private modules = new Map<string, Module>();
+  private _modules = new Map<string, Module>();
   watcher?: Chokidar.FSWatcher;
   _options: BotOptions;
 
@@ -62,7 +66,7 @@ export class Bot extends Discord.Client {
           this.add(m);
         }
       }
-      
+
       if (this._options.moduleDir) {
         let modDir = this._options.moduleDir;
         let bot = this;
@@ -151,6 +155,10 @@ export class Bot extends Discord.Client {
           mod.enable(this);
         }
       }
+
+      this.core.add(HelpCommand);
+      this.core.add(EvalCommand);
+      this.core.add(AboutCommand);
     });
   }
 
@@ -169,31 +177,54 @@ export class Bot extends Discord.Client {
     return core as Module;
   }
 
+  get modules() {
+    return this._modules;
+  }
+
+  get developers() {
+    return this._options.developers ? this._options.developers : [];
+  }
+
+  fetchCommand(query: string, prefix: boolean = false): { command?: Command, module: Module } | undefined {
+    let queryArr = query.split(":");
+    if (queryArr.length == 2) {
+      let mod = this.modules.get(queryArr[0]);
+      if (!mod) return undefined;
+      let cmd = mod.commands.get(queryArr[1]);
+      if (!cmd) return { module: mod };
+      return { command: cmd, module: mod };
+    } else if (prefix) {
+      let mod: Module | undefined;
+      for (let m of this.modules.values()) {
+        if (prefix && !query.startsWith(m.prefix)) continue;
+        mod = m;
+        let c = m.commands.get(query.substring(m.prefix.length));
+        if (c) return { command: c, module: m };
+      }
+      if (mod) return { module: mod };
+      return undefined;
+    }
+    for (let m of this.modules.values()) {
+      let c = m.commands.get(query);
+      if (c) return { command: c, module: m };
+    }
+    return undefined;
+  }
+
   execute(msg: Discord.Message) {
     if (msg.author.bot) return;
 
     let args = msg.content.split(" ");
     let name = args.shift() || "";
 
-    let mod: Module | undefined;
-    let cmd: Command | undefined;
-
-    for (let m of this.modules.values()) {
-      let prefix = m.getPrefix();
-      if (!msg.content.startsWith(prefix)) continue;
-
-      mod = m;
-      cmd = m.commands.get(name.substring(prefix.length));
-
-      if (cmd) break;
-    }
-
     function sendErrors(errors: string[]) {
       return msg.reply(`The Following Error(s) Occurred:\n - ${errors.join("\n - ")}`);
     }
 
-    if (!mod && !cmd) return;
-    else if (!mod || !cmd) return sendErrors(["Command Not Found"]);
+    let data = this.fetchCommand(name, true);
+    if (!data) return;
+    else if (!data.command) return sendErrors(["Command Not Found"]);
+    let { command: cmd, module: mod } = data;
 
     let opt = (Object.assign({}, this._options, mod.options, cmd.options) as (CommandOptions & ModuleOptions));
     let errors: string[] = [];
