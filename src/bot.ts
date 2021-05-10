@@ -5,6 +5,7 @@ import { Module, ModuleOptions, Command, CommandOptions } from "./classes";
 import { HelpCommand, EvalCommand, AboutCommand } from "./commands";
 
 export * from "./classes";
+export * from "./commands";
 
 function superRequire(file: string) {
   try {
