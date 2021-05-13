@@ -84,7 +84,7 @@ export class Bot extends Discord.Client {
         });
 
         this.watcher.on("add", path => {
-          let pathArr = path.split("\\");
+          let pathArr = path.split(/[\/\\]/gi);
           let file = pathArr[pathArr.length - 1];
           if (!file) return;
           let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
@@ -106,7 +106,7 @@ export class Bot extends Discord.Client {
         });
 
         this.watcher.on("change", path => {
-          let pathArr = path.split("\\");
+          let pathArr = path.split(/[\/\\]/gi);
           let file = pathArr[pathArr.length - 1];
           if (!file) return;
           let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
@@ -130,7 +130,7 @@ export class Bot extends Discord.Client {
         });
 
         this.watcher.on("unlink", path => {
-          let pathArr = path.split("\\");
+          let pathArr = path.split(/[\/\\]/gi);
           let file = pathArr[pathArr.length - 1];
           if (!file) return;
           let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
