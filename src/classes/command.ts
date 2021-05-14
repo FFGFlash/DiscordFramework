@@ -18,9 +18,7 @@ export class Command {
 
   arguments = new Map<string, Argument>();
 
-  private _execute: (this: Module, msg: Message, ...args: any) => CommandExecuteResponse | Promise<CommandExecuteResponse> = function(msg) {
-    return msg.reply("Hello World!");
-  }
+  module?: Module;
 
   constructor(name: string, options?: CommandOptions) {
     this.name = name;
@@ -44,12 +42,16 @@ export class Command {
     return false;
   }
 
-  get execute() {
-    return this._execute;
+  execute(msg: Message, ...args: any): Promise<CommandExecuteResponse> | CommandExecuteResponse {
+    return msg.reply(`Hello world! Args: ${args.join(" ")}`);
   }
 
-  set execute(execute) {
-    this._execute = execute;
+  enable(module: Module) {
+    this.module = module;
+  }
+
+  disable() {
+    this.module = undefined;
   }
 
   get formated() {

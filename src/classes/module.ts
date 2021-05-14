@@ -1,11 +1,11 @@
-import { Command, CommandOptions } from "./command";
+import { Command, CommandOptions, CommandExecuteResponse } from "./command";
 import { join } from "path";
 import { Bot } from "../bot";
 import { Message, MessageEmbedOptions, MessageEmbed } from "discord.js";
 
 export interface ModuleOptions extends CommandOptions {
   prefix?: string;
-  commands?: (Command | {name: string, options: CommandOptions, execute: (msg: Message, ...args: any[]) => Message | Promise<Message> | undefined})[];
+  commands?: (Command | {name: string, options: CommandOptions, execute: (msg: Message, ...args: any[]) => Promise<CommandExecuteResponse> | CommandExecuteResponse})[];
   embed?: MessageEmbedOptions;
 }
 
@@ -35,9 +35,13 @@ export class Module {
   }
 
   disable() {
-    if (!this.bot || !this.bot.watcher || !this.bot._options.moduleDir) return;
+    if (!this.bot || !this.bot.watcher || !this.bot._options.moduleDir) {
+      this.bot = undefined;
+      return;
+    }
     let path = join(this.bot._options.moduleDir, this.name);
-    return this.bot.watcher.unwatch(path);
+    this.bot.watcher.unwatch(path);
+    this.bot = undefined;
   }
 
   enable(bot: Bot) {
@@ -76,6 +80,7 @@ export class Module {
 
   add<T>(object: T): T {
     if (object instanceof Command) {
+      object.enable(this);
       this.commands.set(object.name, object);
     }
     return object;
@@ -83,6 +88,7 @@ export class Module {
 
   remove<T>(object: T): T {
     if (object instanceof Command) {
+      object.disable();
       this.commands.delete(object.name);
     }
     return object;

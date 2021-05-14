@@ -22,28 +22,28 @@ export const HelpCommand = new Command("help", {
 });
 
 AboutCommand.execute = async function(msg) {
-  if (!this.bot || !this.bot.user) return;
+  if (!this.module || !this.module.bot || !this.module.bot.user) return;
 
   let developers: Array<string> = [];
 
-  if (this.bot.developers.length > 0) {
-    for (let id of this.bot.developers) {
-      let user = await this.bot.users.fetch(id);
+  if (this.module.bot.developers.length > 0) {
+    for (let id of this.module.bot.developers) {
+      let user = await this.module.bot.users.fetch(id);
       if (!user) continue;
       developers.push(user.tag);
     }
   } else developers.push("Unspecified")
 
-  msg.channel.send(this.createEmbed({
-    title: `About ${this.bot.user.tag}`,
-    description: this.bot._options.about,
+  msg.channel.send(this.module.createEmbed({
+    title: `About ${this.module.bot.user.tag}`,
+    description: this.module.bot._options.about,
     fields: [
       { name: "Developers", value: `${developers.join(", ").replace(/, (\w+)$/i, " and $1")}.` },
-      { name: "Guilds", value: `Count: ${this.bot.guilds.cache.size}`, inline: true },
-      { name: "API Latency", value: `${Math.round(this.bot.ws.ping)}ms`, inline: true },
+      { name: "Guilds", value: `Count: ${this.module.bot.guilds.cache.size}`, inline: true },
+      { name: "API Latency", value: `${Math.round(this.module.bot.ws.ping)}ms`, inline: true },
       { name: "Message Latency", value: `${Date.now() - msg.createdTimestamp}ms`, inline: true }
     ],
-    thumbnail: { url: this.bot.user.avatarURL() as string }
+    thumbnail: { url: this.module.bot.user.avatarURL() as string }
   }));
 };
 
@@ -75,12 +75,12 @@ EvalCommand.execute = function(msg, ...code) {
 };
 
 HelpCommand.execute = function(msg, cp) {
-  if (!this.bot) return;
+  if (!this.module || !this.module.bot) return;
 
   let page = cp ? parseInt(cp) - 1 : 0;
 
   if (isNaN(page)) {
-    let data = this.bot.fetchCommand(cp);
+    let data = this.module.bot.fetchCommand(cp);
     if (!data || !data.command) return msg.reply(`Command "${cp}" Not Found.`);
     let { command: cmd, module: mod } = data;
 
@@ -93,7 +93,7 @@ HelpCommand.execute = function(msg, cp) {
       });
     }
 
-    msg.channel.send(this.createEmbed({
+    msg.channel.send(this.module.createEmbed({
       title: `${mod.prefix}${cmd.formated}`,
       description: cmd.description,
       fields: args
@@ -103,7 +103,7 @@ HelpCommand.execute = function(msg, cp) {
   }
 
   let commands = [];
-  for (let mod of this.bot.modules.values()) {
+  for (let mod of this.module.bot.modules.values()) {
     for (let command of mod.commands.values()) {
       commands.push({
         name: `${mod.prefix}${command.formated}`,
@@ -118,7 +118,7 @@ HelpCommand.execute = function(msg, cp) {
   let start = page * 20;
   commands = commands.slice(start, Math.min(start + 20, commands.length));
 
-  msg.channel.send(this.createEmbed({
+  msg.channel.send(this.module.createEmbed({
     title: `Command List`,
     description: `Page ${page + 1} out of ${maxPage + 1}`,
     fields: commands

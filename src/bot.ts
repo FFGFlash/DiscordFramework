@@ -93,6 +93,7 @@ export class Bot extends Discord.Client {
           let module;
           if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
             console.log(`Loading Module "${name}" from "${path}"`);
+            if (data instanceof Function) return this.add(new data());
             module = this.addModule(name, data.options);
             if (!data.initialize) return;
             data.initialize.call(module);
@@ -101,6 +102,7 @@ export class Bot extends Discord.Client {
             console.log(`Loading Command "${name}" from "${path}"`);
             module = bot.modules.get(modName);
             if (!module) return console.error(`Failed to Load Command, Missing "${modName}" Module`);
+            if (data instanceof Function) return this.add(new data());
             module.addCommand(name, data.options).execute = data.execute;
           }
         });
@@ -115,6 +117,11 @@ export class Bot extends Discord.Client {
           let module;
           if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
             console.log(`Reloading Module "${name}" from "${path}"`);
+            if (data instanceof Function) {
+              let mod = new data();
+              this.removeModule(mod.name);
+              return this.add(mod);
+            }
             this.removeModule(name);
             module = this.addModule(name, data.options);
             if (!data.initialize) return;
@@ -124,6 +131,11 @@ export class Bot extends Discord.Client {
             console.log(`Reloading Command "${name}" from "${path}"`);
             module = bot.modules.get(modName);
             if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
+            if (data instanceof Function) {
+              let cmd = new data();
+              module.removeCommand(cmd.name);
+              return module.add(cmd);
+            }
             module.removeCommand(name);
             module.addCommand(name, data.options).execute = data.execute;
           }
@@ -135,15 +147,24 @@ export class Bot extends Discord.Client {
           if (!file) return;
           let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
           path = resolve(`./${path}`);
+          let data = require(path);
           let module;
           if (pathArr[pathArr.length - 2] == modDir.slice(2)) {
             console.log(`Unloading Module "${name}" from "${path}"`);
+            if (data instanceof Function) {
+              let mod = new data();
+              return this.removeModule(mod.name);;
+            }
             this.removeModule(name);
           } else {
             let modName = pathArr[pathArr.length - 2];
             console.log(`Unloading Command "${name}" from "${path}"`);
             module = bot.modules.get(modName);
             if (!module) return console.error(`Failed to Reload Command, Missing "${modName}" Module`);
+            if (data instanceof Function) {
+              let cmd = new data();
+              return module.removeCommand(cmd.name);;
+            }
             module.removeCommand(name);
           }
         });
@@ -238,7 +259,7 @@ export class Bot extends Discord.Client {
 
     if (errors.length > 0) return sendErrors(errors);
 
-    return cmd.execute.call(mod, msg, ...args);
+    return cmd.execute(msg, ...args);
   }
 
   add<T>(object: T): T {

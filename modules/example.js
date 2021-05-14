@@ -8,8 +8,8 @@ exports.options = {
       description: "A simple command added through the inline format!"
     },
     execute: function(msg) {
-      this.data.hello_world += "!";
-      return msg.reply(`${this.data.hello_world}`);
+      this.module.data.hello_world += "!";
+      return msg.reply(`${this.module.data.hello_world}`);
     }
   }]
 };
