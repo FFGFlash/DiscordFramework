@@ -20,7 +20,6 @@
     "declaration": true
   },
   "exclude": [
-    "commands/**/*",
     "modules/**/*",
     "dist/**/*",
     "docs/**/*"

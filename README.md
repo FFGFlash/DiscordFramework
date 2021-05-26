@@ -7,11 +7,12 @@
 - [Installing](#installing)
 - [Example](#examples)
     - [Bot](#bot)
+    - [Module File](#module-file)
     - [Command File](#command-file)
 
 ## Installing
 ```bat
-> npm install --save ffg-discord-framework@alpha
+> npm install --save ffg-discord-framework
 ```
 ## Examples
 #### Bot
@@ -20,9 +21,9 @@ const { Bot } = require("ffg-discord-framework");
 
 let bot = new Bot({
     prefix: "!", // The global command prefix
-    developers: [12345678901234567890], // A list of Discord IDs that grant bot owner permission
-    deleteTimer: 5, // How long a response should stay in chat *Comming Soon
-    embed: {}, // Default embed options used when creating an embed with 'bot.createEmbed()' *Comming Soon
+    developers: [ 12345678901234567890 ], // A list of Discord IDs that grant developer permissions
+    deleteTimer: 5, // How long a response should stay in chat
+    embed: {}, // Default embed options used when creating an embed with 'bot.createEmbed()'
     commands: [ // Commands here are added to the "core" module.
       {name: "example_inline", options: { /* Same as below */ }, execute: function(msg) {}}
     ],
@@ -44,7 +45,7 @@ bot.addModule("example", {
 
 bot.core.addCommand("example", {
     description: "An example command.", // A description of the command
-    devOnly: false, // Whether the author needs bot owner permission or not
+    devOnly: false, // Whether the author needs developer permissions or not
     permissions: new Discord.Permission(0), // Permissions required to execute this command (guild only)
     guildOnly: false, // Determines whether or not the command will be respected within DM channels
     arguments: [ // List of arguments or argument descriptors
