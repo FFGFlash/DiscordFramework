@@ -1,15 +1,14 @@
-import { Bot } from "./bot";
 import { config } from "dotenv";
+import { Bot } from "./bot";
 
 config();
 
-const bot = new Bot({
-  developers: (process.env.DEVELOPERS || "").split(" ")
-});
+let developers = process.env.DEVELOPERS ? process.env.DEVELOPERS.split(",") : [];
 
-bot.on("ready", () => {
-  if (!bot.user) return;
-  console.log(`${bot.user.tag} is now ready!`);
-});
+let bot = new Bot({ developers: developers });
 
 bot.login(process.env.TOKEN);
+
+process.on("exit", () => {
+  bot.destroy();
+});

@@ -1,29 +1,37 @@
 export interface ArgumentOptions {
-  optional?: boolean;
   description?: string;
+  optional?: boolean;
+}
+
+interface _ArgumentOptions extends ArgumentOptions {
+  description: string;
+  optional: boolean;
 }
 
 export class Argument {
-  name: string;
-  options?: ArgumentOptions;
+  private _name: string;
+  private _options: _ArgumentOptions;
+
+  static readonly DefaultOptions: _ArgumentOptions = {
+    description: "No Description Provided.",
+    optional: false
+  };
 
   constructor(name: string, options?: ArgumentOptions) {
-    this.name = name;
-    this.options = options;
-  }
-
-  get optional() {
-    if (this.options && this.options.optional) {
-      return this.options.optional;
-    }
-    return false;
+    this._name = name;
+    this._options = Object.assign({}, Argument.DefaultOptions, options);
   }
 
   get description() {
-    if (this.options && this.options.description) {
-      return this.options.description;
-    }
-    return "No Description Provided.";
+    return this._options.description;
+  }
+
+  get optional() {
+    return this._options.optional;
+  }
+
+  get name() {
+    return this._name;
   }
 
   get formated() {

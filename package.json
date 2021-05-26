@@ -1,6 +1,6 @@
 {
   "name": "ffg-discord-framework",
-  "version": "4.0.0",
+  "version": "5.0.0-alpha.0",
   "description": "A Discord Bot Framework by Drake Taylor",
   "main": "dist/bot.js",
   "types": "dist/bot.d.ts",
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "chokidar": "^3.5.1",
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "winston": "^3.3.3"
   }
 }

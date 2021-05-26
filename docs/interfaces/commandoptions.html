@@ -70,11 +70,6 @@
 				<ul class="tsd-hierarchy">
 					<li>
 						<span class="target">CommandOptions</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<a href="moduleoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ModuleOptions</a>
-							</li>
-						</ul>
 					</li>
 				</ul>
 			</section>
@@ -100,7 +95,7 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="arguments" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> arguments</h3>
-					<div class="tsd-signature tsd-kind-icon">arguments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="../classes/argument.html" class="tsd-signature-type" data-tsd-kind="Class">Argument</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>options<span class="tsd-signature-symbol">: </span><a href="argumentoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ArgumentOptions</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">arguments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><a href="../classes/argument.html" class="tsd-signature-type" data-tsd-kind="Class">Argument</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>options<span class="tsd-signature-symbol">?: </span><a href="argumentoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">ArgumentOptions</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/classes/command.ts:12</li>
@@ -113,7 +108,7 @@
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/classes/command.ts:11</li>
+							<li>Defined in src/classes/command.ts:8</li>
 						</ul>
 					</aside>
 				</section>
@@ -123,7 +118,7 @@
 					<div class="tsd-signature tsd-kind-icon">dev<wbr>Only<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/classes/command.ts:8</li>
+							<li>Defined in src/classes/command.ts:10</li>
 						</ul>
 					</aside>
 				</section>
@@ -133,14 +128,14 @@
 					<div class="tsd-signature tsd-kind-icon">guild<wbr>Only<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/classes/command.ts:10</li>
+							<li>Defined in src/classes/command.ts:11</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="permissions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> permissions</h3>
-					<div class="tsd-signature tsd-kind-icon">permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Permissions</span></div>
+					<div class="tsd-signature tsd-kind-icon">permissions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CREATE_INSTANT_INVITE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;KICK_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;BAN_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ADMINISTRATOR&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_CHANNELS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_GUILD&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ADD_REACTIONS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;VIEW_AUDIT_LOG&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PRIORITY_SPEAKER&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;STREAM&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;VIEW_CHANNEL&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SEND_MESSAGES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SEND_TTS_MESSAGES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_MESSAGES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;EMBED_LINKS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ATTACH_FILES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;READ_MESSAGE_HISTORY&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MENTION_EVERYONE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;USE_EXTERNAL_EMOJIS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;VIEW_GUILD_INSIGHTS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CONNECT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SPEAK&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MUTE_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DEAFEN_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MOVE_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;USE_VAD&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CHANGE_NICKNAME&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_NICKNAMES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_ROLES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_WEBHOOKS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_EMOJIS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">BitField</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PermissionString</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">RecursiveReadonlyArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CREATE_INSTANT_INVITE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;KICK_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;BAN_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ADMINISTRATOR&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_CHANNELS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_GUILD&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ADD_REACTIONS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;VIEW_AUDIT_LOG&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;PRIORITY_SPEAKER&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;STREAM&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;VIEW_CHANNEL&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SEND_MESSAGES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SEND_TTS_MESSAGES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_MESSAGES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;EMBED_LINKS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ATTACH_FILES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;READ_MESSAGE_HISTORY&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MENTION_EVERYONE&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;USE_EXTERNAL_EMOJIS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;VIEW_GUILD_INSIGHTS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CONNECT&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SPEAK&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MUTE_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;DEAFEN_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MOVE_MEMBERS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;USE_VAD&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;CHANGE_NICKNAME&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_NICKNAMES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_ROLES&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_WEBHOOKS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MANAGE_EMOJIS&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">BitField</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">PermissionString</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/classes/command.ts:9</li>
@@ -160,6 +155,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
+						<a href="../classes/aboutcommand.html" class="tsd-kind-icon">About<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="../classes/argument.html" class="tsd-kind-icon">Argument</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -169,7 +167,28 @@
 						<a href="../classes/command.html" class="tsd-kind-icon">Command</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/module.html" class="tsd-kind-icon">Module</a>
+						<a href="../classes/commandhandler.html" class="tsd-kind-icon">Command<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/evalcommand.html" class="tsd-kind-icon">Eval<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/genericcommand.html" class="tsd-kind-icon">Generic<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/generichandler.html" class="tsd-kind-icon">Generic<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/handler.html" class="tsd-kind-icon">Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/helpcommand.html" class="tsd-kind-icon">Help<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/startuphandler.html" class="tsd-kind-icon">Startup<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/watchhandler.html" class="tsd-kind-icon">Watch<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="argumentoptions.html" class="tsd-kind-icon">Argument<wbr>Options</a>
@@ -202,19 +221,10 @@
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface">
-						<a href="moduleoptions.html" class="tsd-kind-icon">Module<wbr>Options</a>
+						<a href="handleroptions.html" class="tsd-kind-icon">Handler<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="../modules.html#commandexecuteresponse" class="tsd-kind-icon">Command<wbr>Execute<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#aboutcommand" class="tsd-kind-icon">About<wbr>Command</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#evalcommand" class="tsd-kind-icon">Eval<wbr>Command</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../modules.html#helpcommand" class="tsd-kind-icon">Help<wbr>Command</a>
+						<a href="../modules.html#commandreturn" class="tsd-kind-icon">Command<wbr>Return</a>
 					</li>
 				</ul>
 			</nav>
@@ -231,10 +241,16 @@
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>

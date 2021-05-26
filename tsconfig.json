@@ -21,8 +21,9 @@
   },
   "exclude": [
     "commands/**/*",
-    "modules/**/*",
+    "handlers/**/*",
     "dist/**/*",
-    "docs/**/*"
+    "docs/**/*",
+    "old_src/**/*"
   ]
 }
