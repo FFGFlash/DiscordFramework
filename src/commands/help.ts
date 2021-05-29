@@ -16,7 +16,6 @@ export class HelpCommand extends Command {
 
   call(msg: Message, name?: string) {
     let author = msg.author;
-    if (!this.bot) return;
     let prefix = this.bot.prefix(msg.guild);
 
     let embed = this.createEmbed({

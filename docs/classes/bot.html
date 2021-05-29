@@ -95,6 +95,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#channels" class="tsd-kind-icon">channels</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#commands" class="tsd-kind-icon">commands</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#databases" class="tsd-kind-icon">databases</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#emojis" class="tsd-kind-icon">emojis</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#guilds" class="tsd-kind-icon">guilds</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="bot.html#handlers" class="tsd-kind-icon">handlers</a></li>
@@ -124,6 +125,7 @@
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bot.html#developers" class="tsd-kind-icon">developers</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bot.html#error" class="tsd-kind-icon">error</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bot.html#log" class="tsd-kind-icon">log</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bot.html#root" class="tsd-kind-icon">root</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="bot.html#warn" class="tsd-kind-icon">warn</a></li>
 							</ul>
 						</section>
@@ -132,6 +134,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="bot.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#addcommand" class="tsd-kind-icon">add<wbr>Command</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#adddatabase" class="tsd-kind-icon">add<wbr>Database</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#addhandler" class="tsd-kind-icon">add<wbr>Handler</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#clearimmediate" class="tsd-kind-icon">clear<wbr>Immediate</a></li>
@@ -162,6 +165,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="bot.html#remove" class="tsd-kind-icon">remove</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited tsd-is-external"><a href="bot.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#removecommand" class="tsd-kind-icon">remove<wbr>Command</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#removedatabase" class="tsd-kind-icon">remove<wbr>Database</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="bot.html#removehandler" class="tsd-kind-icon">remove<wbr>Handler</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="bot.html#setimmediate" class="tsd-kind-icon">set<wbr>Immediate</a></li>
@@ -191,7 +195,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Client.constructor</p>
 								<ul>
-									<li>Defined in src/bot.ts:60</li>
+									<li>Defined in src/bot.ts:64</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -216,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">_options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">_BotOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/bot.ts:32</li>
+							<li>Defined in src/bot.ts:35</li>
 						</ul>
 					</aside>
 				</section>
@@ -237,7 +241,7 @@
 					<div class="tsd-signature tsd-kind-icon">commands<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/bot.ts:30</li>
+							<li>Defined in src/bot.ts:32</li>
 						</ul>
 					</aside>
 				</section>
@@ -247,7 +251,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/bot.ts:43</li>
+							<li>Defined in src/bot.ts:46</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -258,6 +262,16 @@
 							</li>
 						</ul>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="databases" class="tsd-anchor"></a>
+					<h3>databases</h3>
+					<div class="tsd-signature tsd-kind-icon">databases<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/bot.ts:33</li>
+						</ul>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 					<a name="emojis" class="tsd-anchor"></a>
@@ -287,7 +301,7 @@
 					<div class="tsd-signature tsd-kind-icon">handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="handler.html" class="tsd-signature-type" data-tsd-kind="Class">Handler</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/bot.ts:29</li>
+							<li>Defined in src/bot.ts:31</li>
 						</ul>
 					</aside>
 				</section>
@@ -297,7 +311,7 @@
 					<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Logger</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/bot.ts:34</li>
+							<li>Defined in src/bot.ts:37</li>
 						</ul>
 					</aside>
 				</section>
@@ -417,7 +431,7 @@
 					<div class="tsd-signature tsd-kind-icon">Default<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">_BotOptions</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/bot.ts:45</li>
+							<li>Defined in src/bot.ts:48</li>
 						</ul>
 					</aside>
 				</section>
@@ -493,7 +507,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:93</li>
+									<li>Defined in src/bot.ts:97</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -510,7 +524,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:97</li>
+									<li>Defined in src/bot.ts:101</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -527,7 +541,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:89</li>
+									<li>Defined in src/bot.ts:93</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -544,7 +558,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:105</li>
+									<li>Defined in src/bot.ts:113</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LeveledLogMethod</span></h4>
@@ -561,10 +575,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:101</li>
+									<li>Defined in src/bot.ts:109</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LeveledLogMethod</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="root" class="tsd-anchor"></a>
+					<h3>root</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> root<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/bot.ts:105</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -578,7 +609,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:109</li>
+									<li>Defined in src/bot.ts:117</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">LeveledLogMethod</span></h4>
@@ -598,7 +629,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:121</li>
+									<li>Defined in src/bot.ts:129</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -627,7 +658,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:145</li>
+									<li>Defined in src/bot.ts:153</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -644,6 +675,77 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="adddatabase" class="tsd-anchor"></a>
+					<h3>add<wbr>Database</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Database<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Database<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/databaseoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">DatabaseOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Database<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, db<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, username<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/databaseoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">DatabaseOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/bot.ts:161</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>uri: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/bot.ts:162</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>options: <a href="../interfaces/databaseoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">DatabaseOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/bot.ts:163</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>db: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>username: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> password: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/databaseoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">DatabaseOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="addhandler" class="tsd-anchor"></a>
 					<h3>add<wbr>Handler</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -653,7 +755,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:137</li>
+									<li>Defined in src/bot.ts:145</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -799,7 +901,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:113</li>
+									<li>Defined in src/bot.ts:121</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1447,7 +1549,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:82</li>
+									<li>Defined in src/bot.ts:86</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1584,7 +1686,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:129</li>
+									<li>Defined in src/bot.ts:137</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1665,7 +1767,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:149</li>
+									<li>Defined in src/bot.ts:157</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1679,6 +1781,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removedatabase" class="tsd-anchor"></a>
+					<h3>remove<wbr>Database</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Database<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/bot.ts:168</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="database.html" class="tsd-signature-type" data-tsd-kind="Class">Database</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="removehandler" class="tsd-anchor"></a>
 					<h3>remove<wbr>Handler</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1688,7 +1813,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/bot.ts:141</li>
+									<li>Defined in src/bot.ts:149</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2098,6 +2223,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="bot.html#data" class="tsd-kind-icon">data</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="bot.html#databases" class="tsd-kind-icon">databases</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
 								<a href="bot.html#emojis" class="tsd-kind-icon">emojis</a>
 							</li>
@@ -2171,6 +2299,9 @@
 								<a href="bot.html#log" class="tsd-kind-icon">log</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="bot.html#root" class="tsd-kind-icon">root</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="bot.html#warn" class="tsd-kind-icon">warn</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
@@ -2178,6 +2309,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bot.html#addcommand" class="tsd-kind-icon">add<wbr>Command</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bot.html#adddatabase" class="tsd-kind-icon">add<wbr>Database</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bot.html#addhandler" class="tsd-kind-icon">add<wbr>Handler</a>
@@ -2270,6 +2404,9 @@
 								<a href="bot.html#removecommand" class="tsd-kind-icon">remove<wbr>Command</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="bot.html#removedatabase" class="tsd-kind-icon">remove<wbr>Database</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="bot.html#removehandler" class="tsd-kind-icon">remove<wbr>Handler</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -2313,6 +2450,9 @@
 						<a href="commandhandler.html" class="tsd-kind-icon">Command<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="database.html" class="tsd-kind-icon">Database</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="evalcommand.html" class="tsd-kind-icon">Eval<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -2341,6 +2481,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/commandoptions.html" class="tsd-kind-icon">Command<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-is-external">
+						<a href="../interfaces/databaseoptions.html" class="tsd-kind-icon">Database<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/handleroptions.html" class="tsd-kind-icon">Handler<wbr>Options</a>

@@ -22,6 +22,7 @@
   "exclude": [
     "commands/**/*",
     "handlers/**/*",
+    "databases/**/*",
     "dist/**/*",
     "docs/**/*",
     "old_src/**/*"

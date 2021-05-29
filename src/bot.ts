@@ -1,7 +1,7 @@
 import { Client, ClientOptions, Guild, MessageEmbed, MessageEmbedOptions } from "discord.js";
 import Winston from "winston";
 
-import { Handler, GenericHandler, HandlerOptions, Command, GenericCommand, CommandOptions } from "./classes";
+import { Handler, GenericHandler, HandlerOptions, Command, GenericCommand, CommandOptions, Database, DatabaseOptions } from "./classes";
 import * as Handlers from "./handlers";
 import * as Commands from "./commands";
 
@@ -15,6 +15,7 @@ export interface BotOptions {
   deleteTimer?: number;
   embed?: MessageEmbed | MessageEmbedOptions | ((this: Bot) => MessageEmbed | MessageEmbedOptions);
   description?: string;
+  root?: string;
 }
 
 interface _BotOptions extends BotOptions {
@@ -23,11 +24,13 @@ interface _BotOptions extends BotOptions {
   deleteTimer: number;
   embed: MessageEmbed | MessageEmbedOptions | ((this: Bot) => MessageEmbed | MessageEmbedOptions);
   description: string;
+  root: string;
 }
 
 export class Bot extends Client {
   public handlers: Map<string, Handler> = new Map();
   public commands: Map<string, Command> = new Map();
+  public databases: Map<string, Database> = new Map();
 
   private _options: _BotOptions;
 
@@ -47,6 +50,7 @@ export class Bot extends Client {
     description: "No Description Provided.",
     developers: [],
     deleteTimer: 5000,
+    root: ".",
     embed: function(this: Bot) {
       if (!this.user) return {};
       return {
@@ -98,6 +102,10 @@ export class Bot extends Client {
     return this._options.description;
   }
 
+  get root() {
+    return this._options.root;
+  }
+
   get log() {
     return this.logger.info.bind(this.logger);
   }
@@ -119,7 +127,7 @@ export class Bot extends Client {
   }
 
   add<T>(object: T): T {
-    if (object instanceof Command || object instanceof Handler) {
+    if (object instanceof Command || object instanceof Handler || object instanceof Database) {
       object.connect(this);
     }
 
@@ -127,7 +135,7 @@ export class Bot extends Client {
   }
 
   remove<T>(object: T): T {
-    if (object instanceof Command || object instanceof Handler) {
+    if (object instanceof Command || object instanceof Handler || object instanceof Database) {
       object.disconnect();
     }
 
@@ -148,5 +156,16 @@ export class Bot extends Client {
 
   removeCommand(name: string) {
     return this.remove(this.commands.get(name));
+  }
+
+  addDatabase(name: string, uri: string): Database;
+  addDatabase(name: string, options: DatabaseOptions): Database;
+  addDatabase(name: string, db: string, username: string, password?: string, options?: DatabaseOptions): Database;
+  addDatabase(name: string, ...args: any[]) {
+    return this.add(new Database(name, args[0], args[1], args[2], args[3]));
+  }
+
+  removeDatabase(name: string) {
+    return this.remove(this.databases.get(name));
   }
 }

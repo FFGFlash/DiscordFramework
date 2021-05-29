@@ -1,5 +1,4 @@
 import { Bot } from "../bot";
-import { MessageEmbedOptions, MessageEmbed } from "discord.js";
 
 export interface HandlerOptions {
   once?: boolean;
@@ -14,7 +13,7 @@ export abstract class Handler {
   private _event: string;
   private _options: _HandlerOptions;
 
-  bot?: Bot;
+  bot!: Bot;
   data: {[key: string]: any} = {};
 
   static readonly DefaultOptions: _HandlerOptions = {
@@ -34,7 +33,6 @@ export abstract class Handler {
   }
 
   disconnect() {
-    if (!this.bot) return;
     this.bot.handlers.delete(this.name);
     this.bot.removeListener(this.event, this.call);
   }
@@ -73,7 +71,6 @@ export abstract class Handler {
   }
 
   get createEmbed() {
-    if (!this.bot) return (data: MessageEmbedOptions | MessageEmbed = {}) => new MessageEmbed(data);
     return this.bot.createEmbed.bind(this.bot);
   }
 

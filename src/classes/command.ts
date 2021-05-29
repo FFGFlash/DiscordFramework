@@ -1,5 +1,5 @@
 import { Bot } from "../bot";
-import { Message, Permissions, PermissionResolvable, MessageEmbedOptions, MessageEmbed } from "discord.js";
+import { Message, Permissions, PermissionResolvable } from "discord.js";
 import { Argument, ArgumentOptions } from "./argument";
 
 export type CommandReturn = void | Message | undefined;
@@ -24,7 +24,7 @@ export abstract class Command {
   private _options: _CommandOptions;
   private _arguments: Array<Argument> = [];
 
-  bot?: Bot;
+  bot!: Bot;
   data: {[key: string]: any} = {};
 
   static readonly DefaultOptions: _CommandOptions = {
@@ -99,7 +99,6 @@ export abstract class Command {
   }
 
   get createEmbed() {
-    if (!this.bot) return (data: MessageEmbedOptions | MessageEmbed = {}) => new MessageEmbed(data);
     return this.bot.createEmbed.bind(this.bot);
   }
 
@@ -109,7 +108,6 @@ export abstract class Command {
   }
 
   disconnect() {
-    if (!this.bot) return;
     this.bot.commands.delete(this.name);
   }
 

@@ -13,8 +13,7 @@ export class AboutCommand extends Command {
   }
 
   async call(msg: Message) {
-    if (!this.bot || !this.bot.user) return;
-
+    if (!this.bot.user) return;
     let developers: Array<string> = [ "Unspecified" ];
 
     if (this.bot.developers.length > 0) {
