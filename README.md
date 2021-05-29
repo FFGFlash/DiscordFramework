@@ -53,7 +53,7 @@ bot.login("<bot-token>");
 // ./handlers/example.js
 const { Handler } = require("ffg-discord-framework");
 
-module.exports =
+exports.data =
 class Ready extends Handler {
   constructor(name) {
     super(name, "ready", {});
@@ -68,7 +68,7 @@ class Ready extends Handler {
 ##### Object Syntax
 ```js
 // ./handlers/example.js
-module.exports = {
+exports.data = {
   event: "ready",
   options: {},
   call: function(...args) {
@@ -82,7 +82,7 @@ module.exports = {
 // ./commands/example.js
 const { Command } = require("ffg-discord-framework");
 
-module.exports =
+exports.data =
 class Example extends Command {
   constructor(name) {
     super(name, {});
@@ -96,7 +96,7 @@ class Example extends Command {
 ##### Object Syntax
 ```js
 // ./commands/example.js
-module.exports = {
+exports.data = {
   options: {},
   call: function(msg, ...args) {
     msg.channel.send(`Command: ${this.name}\nArguments: ${args.join(", ")}`);
