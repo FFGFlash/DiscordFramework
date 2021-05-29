@@ -32,6 +32,7 @@ export class WatchHandler extends Handler {
     if (data instanceof Function) this.bot.add(new data(name));
     else if (type == "Handler") this.bot.addHandler(name, data.event, data.options).call = data.call;
     else if (type == "Command") this.bot.addCommand(name, data.options).call = data.call;
+    else if (type == "Database") this.bot.addDatabase(name, data.options).build = data.build;
   }
 
   private unload(path: string, type: Loadables) {
@@ -46,24 +47,25 @@ export class WatchHandler extends Handler {
     if (data instanceof Function) name = new data(name).name;
     if (type == "Handler") this.bot.removeHandler(name);
     else if (type == "Command") this.bot.removeCommand(name);
+    else if (type == "Database") this.bot.removeDatabase(name);
   }
 
   call() {
-    let handlerWatcher = Chokidar.watch(join(this.bot.root, "handlers"), { ignored: /^\./, depth: 0, persistent: true, awaitWriteFinish: true });
+    let handlerWatcher = Chokidar.watch(join(this.bot.root, "handlers/**/*.js"), { ignored: /^\./, depth: 0, persistent: true, awaitWriteFinish: true });
     handlerWatcher.on("add", path => this.load(path, "Handler"));
     handlerWatcher.on("change", path => this.load(path, "Handler"));
     handlerWatcher.on("unlink", path => this.unload(path, "Handler"));
     this.data.handler_watcher?.close();
     this.data.handler_watcher = handlerWatcher;
 
-    let commandWatcher = Chokidar.watch(join(this.bot.root, "commands"), { ignored: /^\./, depth: 0, persistent: true, awaitWriteFinish: true });
+    let commandWatcher = Chokidar.watch(join(this.bot.root, "commands/**/*.js"), { ignored: /^\./, depth: 0, persistent: true, awaitWriteFinish: true });
     commandWatcher.on("add", path => this.load(path, "Command"));
     commandWatcher.on("change", path => this.load(path, "Command"));
     commandWatcher.on("unlink", path => this.unload(path, "Command"));
     this.data.command_watcher?.close();
     this.data.command_watcher = commandWatcher;
 
-    let databaseWatcher = Chokidar.watch(join(this.bot.root, "databases"), { ignored: /^\./, depth: 0, persistent: true, awaitWriteFinish: true });
+    let databaseWatcher = Chokidar.watch(join(this.bot.root, "databases/**/*.js"), { ignored: /^\./, depth: 0, persistent: true, awaitWriteFinish: true });
     databaseWatcher.on("add", path => this.load(path, "Database"));
     databaseWatcher.on("change", path => this.load(path, "Database"));
     databaseWatcher.on("unlink", path => this.unload(path, "Database"));

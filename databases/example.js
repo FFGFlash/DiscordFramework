@@ -8,4 +8,8 @@ class ExampleDatabase extends Database {
       storage: "example.sqlite"
     });
   }
+
+  build() {
+    this.log("Building database...");
+  }
 }

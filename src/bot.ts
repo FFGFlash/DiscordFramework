@@ -1,7 +1,7 @@
 import { Client, ClientOptions, Guild, MessageEmbed, MessageEmbedOptions } from "discord.js";
 import Winston from "winston";
 
-import { Handler, GenericHandler, HandlerOptions, Command, GenericCommand, CommandOptions, Database, DatabaseOptions } from "./classes";
+import { Handler, GenericHandler, HandlerOptions, Command, GenericCommand, CommandOptions, Database, GenericDatabase, DatabaseOptions } from "./classes";
 import * as Handlers from "./handlers";
 import * as Commands from "./commands";
 
@@ -162,7 +162,7 @@ export class Bot extends Client {
   addDatabase(name: string, options: DatabaseOptions): Database;
   addDatabase(name: string, db: string, username: string, password?: string, options?: DatabaseOptions): Database;
   addDatabase(name: string, ...args: any[]) {
-    return this.add(new Database(name, args[0], args[1], args[2], args[3]));
+    return this.add(new GenericDatabase(name, args[0], args[1], args[2], args[3]));
   }
 
   removeDatabase(name: string) {

@@ -6,7 +6,7 @@ export class StartupHandler extends Handler {
   }
 
   call() {
-    if (!this.bot || !this.bot.user) return;
+    if (!this.bot.user) return;
     this.log(`Logged in as ${this.bot.user.tag}!`);
   }
 }

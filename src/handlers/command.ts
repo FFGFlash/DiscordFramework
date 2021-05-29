@@ -7,7 +7,7 @@ export class CommandHandler extends Handler {
   }
 
   async call(msg: Message) {
-    if (!this.bot || !this.bot.user) return;
+    if (!this.bot.user) return;
     let prefix = this.bot.prefix(msg.guild);
     if (msg.author.bot || (!(msg.content.startsWith(`<@${this.bot.user.id}>`) || msg.content.startsWith(`<@!${this.bot.user.id}>`)) && !msg.content.startsWith(prefix))) return;
 
@@ -16,10 +16,8 @@ export class CommandHandler extends Handler {
     let name = args.shift() as string;
     if (!name.startsWith(prefix)) {
       let v = args.shift();
-      if (!v) {
-        msg.channel.send(`Hello, my prefix is '${prefix}'!`);
-        return;
-      } else name = v;
+      if (!v) return msg.channel.send(`Hello, my prefix is '${prefix}'!`);
+      else name = v;
     } else name = name.substring(prefix.length);
 
     let cmd = this.bot.commands.get(name);
