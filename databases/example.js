@@ -1,6 +1,6 @@
 const { Database } = require("../dist/bot");
 
-exports.data =
+exports.default =
 class ExampleDatabase extends Database {
   constructor(name) {
     super(name, {

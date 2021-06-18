@@ -27,7 +27,7 @@ export class WatchHandler extends Handler {
     if (!file) return;
     let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
     path = resolve(`./${path}`);
-    let { data } = superRequire(path);
+    let { default: data } = superRequire(path);
     this.log(`Loading ${type} '${name}' from '${path}'`);
     if (data instanceof Function) this.bot.add(new data(name));
     else if (type == "Handler") this.bot.addHandler(name, data.event, data.options).call = data.call;
@@ -42,7 +42,7 @@ export class WatchHandler extends Handler {
     if (!file) return;
     let name = file.replace(/^(\w+)\.(.+)$/i, "$1");
     path = resolve(`./${path}`);
-    let { data } = require(path);
+    let { default: data } = require(path);
     this.log(`Unloading Handler '${name}' from '${path}'`);
     if (data instanceof Function) name = new data(name).name;
     if (type == "Handler") this.bot.removeHandler(name);

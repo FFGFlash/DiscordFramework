@@ -1,6 +1,6 @@
 const { Handler } = require("../dist/bot");
 
-exports.data =
+exports.default =
 class Ready extends Handler {
   constructor(name) {
     super(name, "ready", {});

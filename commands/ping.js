@@ -1,6 +1,6 @@
 const { Command } = require("../dist/bot");
 
-exports.data =
+exports.default =
 class PingCommand extends Command {
   constructor(name) {
     super(name, {
