@@ -58,18 +58,26 @@
 					<a href="generichandler.html">GenericHandler</a>
 				</li>
 			</ul>
-			<h1>Class GenericHandler</h1>
+			<h1>Class GenericHandler&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a></h4>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="handler.html" class="tsd-signature-type" data-tsd-kind="Class">Handler</a>
+						<a href="handler.html" class="tsd-signature-type" data-tsd-kind="Class">Handler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">GenericHandler</span>
@@ -85,7 +93,7 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="generichandler.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="generichandler.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-inherited">
@@ -99,6 +107,7 @@
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-private"><a href="generichandler.html#bindedcall" class="tsd-kind-icon">binded<wbr>Call</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="generichandler.html#createembed" class="tsd-kind-icon">create<wbr>Embed</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="generichandler.html#error" class="tsd-kind-icon">error</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="generichandler.html#event" class="tsd-kind-icon">event</a></li>
@@ -121,33 +130,39 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Generic<wbr>Handler<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/handleroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">HandlerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="generichandler.html" class="tsd-signature-type" data-tsd-kind="Class">GenericHandler</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Generic<wbr>Handler&lt;T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/handleroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">HandlerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="generichandler.html" class="tsd-signature-type" data-tsd-kind="Class">GenericHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="handler.html">Handler</a>.<a href="handler.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in src/classes/handler.ts:21</li>
+									<li>Defined in src/classes/handler.ts:22</li>
 								</ul>
 							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;load&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;destroy&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;prelogin&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildRegistered&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildUnregistered&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberRegistered&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberUnregistered&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;userRegistered&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;userUnregistered&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;channelCreate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;channelDelete&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;channelPinsUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;channelUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;debug&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;warn&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;disconnect&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;emojiCreate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;emojiDelete&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;emojiUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;error&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildBanAdd&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildBanRemove&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildCreate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildDelete&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildUnavailable&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildIntegrationsUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberAdd&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberAvailable&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberRemove&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMembersChunk&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberSpeaking&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildMemberUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;guildUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;inviteCreate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;inviteDelete&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;message&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageDelete&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageReactionRemoveAll&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageReactionRemoveEmoji&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageDeleteBulk&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageReactionAdd&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageReactionRemove&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;messageUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;presenceUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;rateLimit&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;ready&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;invalidated&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;roleCreate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;roleDelete&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;roleUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;typingStart&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;userUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;voiceStateUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;webhookUpdate&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;shardDisconnect&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;shardError&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;shardReady&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;shardReconnecting&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;shardResume&quot;</span></h4>
+								</li>
+							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>event: <span class="tsd-signature-type">string</span></h5>
+									<h5>event: <span class="tsd-signature-type">T</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/handleroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">HandlerOptions</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="generichandler.html" class="tsd-signature-type" data-tsd-kind="Class">GenericHandler</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="generichandler.html" class="tsd-signature-type" data-tsd-kind="Class">GenericHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -161,7 +176,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="handler.html">Handler</a>.<a href="handler.html#bot">bot</a></p>
 						<ul>
-							<li>Defined in src/classes/handler.ts:16</li>
+							<li>Defined in src/classes/handler.ts:17</li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +187,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="handler.html">Handler</a>.<a href="handler.html#data">data</a></p>
 						<ul>
-							<li>Defined in src/classes/handler.ts:17</li>
+							<li>Defined in src/classes/handler.ts:18</li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -191,13 +206,48 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="handler.html">Handler</a>.<a href="handler.html#defaultoptions">DefaultOptions</a></p>
 						<ul>
-							<li>Defined in src/classes/handler.ts:19</li>
+							<li>Defined in src/classes/handler.ts:20</li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+					<a name="bindedcall" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> binded<wbr>Call</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> bindedCall<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/classes/handler.ts:78</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-signature">
+									<ul class="tsd-signatures tsd-kind-type-literal">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 					<a name="createembed" class="tsd-anchor"></a>
 					<h3>create<wbr>Embed</h3>
@@ -208,7 +258,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:73</li>
+									<li>Defined in src/classes/handler.ts:74</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">MessageEmbed</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">MessageEmbedOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">MessageEmbed</span></h4>
@@ -243,7 +293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:59</li>
+									<li>Defined in src/classes/handler.ts:60</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, <span class="tsd-signature-symbol">...</span>optionalParams<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
@@ -280,16 +330,16 @@
 					<a name="event" class="tsd-anchor"></a>
 					<h3>event</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> event<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> event<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:44</li>
+									<li>Defined in src/classes/handler.ts:45</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -303,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:52</li>
+									<li>Defined in src/classes/handler.ts:53</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, <span class="tsd-signature-symbol">...</span>optionalParams<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
@@ -346,7 +396,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:40</li>
+									<li>Defined in src/classes/handler.ts:41</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -363,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:48</li>
+									<li>Defined in src/classes/handler.ts:49</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -380,7 +430,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/classes/handler.ts:66</li>
+									<li>Defined in src/classes/handler.ts:67</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, <span class="tsd-signature-symbol">...</span>optionalParams<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
@@ -420,20 +470,20 @@
 					<a name="call" class="tsd-anchor"></a>
 					<h3>call</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">call<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">call<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="handler.html">Handler</a>.<a href="handler.html#call">call</a></p>
 								<ul>
-									<li>Defined in src/classes/handler.ts:81</li>
+									<li>Defined in src/classes/handler.ts:94</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <a href="../interfaces/events.html" class="tsd-signature-type" data-tsd-kind="Interface">Events</a><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -451,7 +501,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="handler.html">Handler</a>.<a href="handler.html#connect">connect</a></p>
 								<ul>
-									<li>Defined in src/classes/handler.ts:29</li>
+									<li>Defined in src/classes/handler.ts:30</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -475,7 +525,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="handler.html">Handler</a>.<a href="handler.html#disconnect">disconnect</a></p>
 								<ul>
-									<li>Defined in src/classes/handler.ts:35</li>
+									<li>Defined in src/classes/handler.ts:36</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -509,6 +559,9 @@
 					<li class=" tsd-kind-class">
 						<a href="commandhandler.html" class="tsd-kind-icon">Command<wbr>Handler</a>
 					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="corehandler.html" class="tsd-kind-icon">Core<wbr>Handler</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="database.html" class="tsd-kind-icon">Database</a>
 					</li>
@@ -523,10 +576,10 @@
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
+					<li class="current tsd-kind-class tsd-has-type-parameter">
 						<a href="generichandler.html" class="tsd-kind-icon">Generic<wbr>Handler</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
 								<a href="generichandler.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
@@ -537,6 +590,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="generichandler.html#defaultoptions" class="tsd-kind-icon">Default<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+								<a href="generichandler.html#bindedcall" class="tsd-kind-icon">binded<wbr>Call</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 								<a href="generichandler.html#createembed" class="tsd-kind-icon">create<wbr>Embed</a>
@@ -572,14 +628,44 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="handler.html" class="tsd-kind-icon">Handler</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="helpcommand.html" class="tsd-kind-icon">Help<wbr>Command</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="startuphandler.html" class="tsd-kind-icon">Startup<wbr>Handler</a>
+						<a href="joindestroyhandler.html" class="tsd-kind-icon">Join<wbr>Destroy<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="joinreadyhandler.html" class="tsd-kind-icon">Join<wbr>Ready<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="joinserverhandler.html" class="tsd-kind-icon">Join<wbr>Server<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="leaveserverhandler.html" class="tsd-kind-icon">Leave<wbr>Server<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="memberjoinhandler.html" class="tsd-kind-icon">Member<wbr>Join<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="memberleavehandler.html" class="tsd-kind-icon">Member<wbr>Leave<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="readyhandler.html" class="tsd-kind-icon">Ready<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="registerguildhandler.html" class="tsd-kind-icon">Register<wbr>Guild<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="registerguildmemberhandler.html" class="tsd-kind-icon">Register<wbr>Guild<wbr>Member<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="unregisterguildhandler.html" class="tsd-kind-icon">Unregister<wbr>Guild<wbr>Handler</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="unregisterguildmemberhandler.html" class="tsd-kind-icon">Unregister<wbr>Guild<wbr>Member<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="watchhandler.html" class="tsd-kind-icon">Watch<wbr>Handler</a>
@@ -595,6 +681,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-is-external">
 						<a href="../interfaces/databaseoptions.html" class="tsd-kind-icon">Database<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/events.html" class="tsd-kind-icon">Events</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/handleroptions.html" class="tsd-kind-icon">Handler<wbr>Options</a>

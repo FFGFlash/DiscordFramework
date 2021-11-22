@@ -1,9 +1,9 @@
-import { Handler } from "../classes";
+import { CoreHandler } from "../classes";
 import { Message } from "discord.js";
 
-export class CommandHandler extends Handler {
-  constructor() {
-    super("\\command_handler", "message", { once: false });
+export class CommandHandler extends CoreHandler<"message"> {
+  constructor(name?: string) {
+    super("\\command_handler", "message", name, { once: false });
   }
 
   async call(msg: Message) {

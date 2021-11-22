@@ -1,4 +1,4 @@
-import { Handler } from "../classes";
+import { CoreHandler } from "../classes";
 import Chokidar from "chokidar";
 import { resolve, join } from "path";
 
@@ -13,11 +13,11 @@ function superRequire(file: string) {
   }
 }
 
-export class WatchHandler extends Handler {
+export class WatchHandler extends CoreHandler<"load"> {
   data: { [key: string]: any, command_watcher?: Chokidar.FSWatcher, handler_watcher?: Chokidar.FSWatcher, database_watcher?: Chokidar.FSWatcher } = {}
 
-  constructor() {
-    super("\\watch_handler", "load", { once: false });
+  constructor(name?: string) {
+    super("\\watch_handler", "load", name, { once: false });
   }
 
   private load(path: string, type: Loadables) {

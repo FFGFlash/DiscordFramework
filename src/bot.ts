@@ -2,10 +2,12 @@ import { Client, ClientOptions, Guild, MessageEmbed, MessageEmbedOptions } from 
 import Winston from "winston";
 
 import { Handler, GenericHandler, HandlerOptions, Command, GenericCommand, CommandOptions, Database, GenericDatabase, DatabaseOptions } from "./classes";
+import { Events } from "./interfaces";
 import * as Handlers from "./handlers";
 import * as Commands from "./commands";
 
 export * from "./classes";
+export * from "./interfaces";
 export * from "./handlers";
 export * from "./commands";
 
@@ -28,7 +30,7 @@ interface _BotOptions extends BotOptions {
 }
 
 export class Bot extends Client {
-  public handlers: Map<string, Handler> = new Map();
+  public handlers: Map<string, Handler<any>> = new Map();
   public commands: Map<string, Command> = new Map();
   public databases: Map<string, Database> = new Map();
 
@@ -67,18 +69,10 @@ export class Bot extends Client {
     super(client_options);
     this._options = Object.assign({}, Bot.DefaultOptions, options);
 
-    if (process.env.NODE_ENV !== "production") {
-      this.logger.add(new Winston.transports.Console({
-        format: Winston.format.simple()
-      }));
-    }
+    if (process.env.NODE_ENV !== "production") this.logger.add(new Winston.transports.Console({ format: Winston.format.simple() }));
 
-    for (let handler of Object.values(Handlers)) {
-      this.add(new handler());
-    }
-    for (let command of Object.values(Commands)) {
-      this.add(new command());
-    }
+    for (let handler of Object.values(Handlers)) this.add(new handler());
+    for (let command of Object.values(Commands)) this.add(new command());
 
     this.emit("load");
   }
@@ -118,6 +112,16 @@ export class Bot extends Client {
     return this.logger.warn.bind(this.logger);
   }
 
+  login(token?: string) {
+    this.emit("prelogin");
+    return super.login(token);
+  }
+
+  destroy() {
+    this.emit("destroy");
+    return super.destroy();
+  }
+
   createEmbed(data?: MessageEmbed | MessageEmbedOptions) {
     return new MessageEmbed(Object.assign(
       {},
@@ -142,7 +146,7 @@ export class Bot extends Client {
     return object;
   }
 
-  addHandler(name: string, event: string, options?: HandlerOptions) {
+  addHandler(name: string, event: keyof Events, options?: HandlerOptions) {
     return this.add(new GenericHandler(name, event, options));
   }
 
@@ -167,5 +171,41 @@ export class Bot extends Client {
 
   removeDatabase(name: string) {
     return this.remove(this.databases.get(name));
+  }
+
+  on<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this;
+  on<S extends string | symbol>(event: Exclude<S, keyof Events>, listener: (...args: any[]) => void): this;
+  on(event: string, listener: (...args: any[]) => void) {
+    return super.on(event, listener);
+  }
+
+  once<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this;
+  once<S extends string | symbol>(event: Exclude<S, keyof Events>, listener: (...args: any[]) => void): this;
+  once(event: string, listener: (...args: any[]) => void) {
+    return super.once(event, listener);
+  }
+
+  emit<K extends keyof Events>(event: K, ...args: Events[K]): boolean;
+  emit<S extends string | symbol>(event: Exclude<S, keyof Events>, ...args: any[]): boolean;
+  emit(event: string, ...args: any[]) {
+    return super.emit(event, ...args);
+  }
+
+  off<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this;
+  off<S extends string | symbol>(event: Exclude<S, keyof Events>, listener: (...args: any[]) => void): this;
+  off(event: string, listener: (...args: any[]) => void) {
+    return super.off(event, listener);
+  }
+
+  removeAllListeners<K extends keyof Events>(event?: K): this;
+  removeAllListeners<S extends string | symbol>(event?: Exclude<S, keyof Events>): this;
+  removeAllListeners(event?: string) {
+    return super.removeAllListeners(event);
+  }
+
+  removeListener<K extends keyof Events>(event: K, listener: (...args: Events[K]) => void): this;
+  removeListener<S extends string | symbol>(event: Exclude<S, keyof Events>, listener: (...args: any[]) => void): this;
+  removeListener(event: string, listener: (...args: any[]) => void) {
+    return super.removeListener(event, listener);
   }
 }

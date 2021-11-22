@@ -1,4 +1,4 @@
-import { Bot } from "../bot";
+import { Bot, Events } from "../bot";
 
 export interface HandlerOptions {
   once?: boolean;
@@ -8,10 +8,11 @@ interface _HandlerOptions extends HandlerOptions {
   once: boolean;
 }
 
-export abstract class Handler {
+export abstract class Handler<T extends keyof Events> {
   private _name: string;
-  private _event: string;
+  private _event: T;
   private _options: _HandlerOptions;
+  private _bindedCall!: (...args: Events[T]) => any;
 
   bot!: Bot;
   data: {[key: string]: any} = {};
@@ -20,7 +21,7 @@ export abstract class Handler {
     once: false
   };
 
-  constructor(name: string, event: string, options?: HandlerOptions) {
+  constructor(name: string, event: T, options?: HandlerOptions) {
     this._name = name;
     this._event = event;
     this._options = Object.assign({}, Handler.DefaultOptions, options);
@@ -29,12 +30,12 @@ export abstract class Handler {
   connect(bot: Bot) {
     this.bot = bot;
     this.bot.handlers.set(this.name, this);
-    this.bot[this.once ? "once" : "on"](this.event, (...args) => this.call(...args));
+    this.bot[this.once ? "once" : "on"]<T>(this.event, this.bindedCall);
   }
 
   disconnect() {
     this.bot.handlers.delete(this.name);
-    this.bot.removeListener(this.event, this.call);
+    this.bot.removeListener(this.event, this.bindedCall);
   }
 
   get name() {
@@ -74,11 +75,23 @@ export abstract class Handler {
     return this.bot.createEmbed.bind(this.bot);
   }
 
-  abstract call(...args: any[]): void;
+  private get bindedCall() {
+    // @ts-ignore
+    if (!this._bindedCall) this._bindedCall = this.call.bind(this);
+    return this._bindedCall;
+  }
+
+  abstract call(this: Handler<T>, ...args: Events[T]): void;
 }
 
-export class GenericHandler extends Handler {
-  call(...args: any[]) {
+export abstract class CoreHandler<T extends keyof Events> extends Handler<T> {
+  constructor(coreName: string, event: T, name?: string, options?: HandlerOptions) {
+    super(name || coreName, event, options);
+  }
+}
+
+export class GenericHandler<T extends keyof Events> extends Handler<T> {
+  call(...args: Events[T]) {
     this.log(`Event: ${this.event} Arguments:\n`, ...args);
   }
 }

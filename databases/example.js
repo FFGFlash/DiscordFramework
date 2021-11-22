@@ -1,7 +1,7 @@
 const { Database } = require("../dist/bot");
 
 exports.default =
-class ExampleDatabase extends Database {
+class Example extends Database {
   constructor(name) {
     super(name, {
       dialect: "sqlite",
@@ -10,6 +10,6 @@ class ExampleDatabase extends Database {
   }
 
   build() {
-    this.log("Building database...");
+    
   }
 }
